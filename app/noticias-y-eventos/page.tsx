@@ -3,7 +3,7 @@ import Card from '../components/card';
 
 const App: React.FC = () => {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <Card
           image="https://example.com/image1.jpg"
@@ -24,7 +24,7 @@ const App: React.FC = () => {
           content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
         />
       </div>
-    </div>
+    </div> 
   );
 };
 

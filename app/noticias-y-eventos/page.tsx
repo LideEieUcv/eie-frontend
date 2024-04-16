@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/card';
+import Card from '@/app/components/card';
 
 const App: React.FC = () => {
   return (

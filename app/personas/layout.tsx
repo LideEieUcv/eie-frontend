@@ -1,14 +1,14 @@
+import TitleSection from '../components/title-section';
+
 const PeopleLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* TODO: component de header */}
-      <header className="flex h-[125px] w-full bg-slate-300">
-        <h1 className="m-auto text-4xl font-bold">Personas</h1>
-      </header>
+      <TitleSection>Personas</TitleSection>
       {children}
     </div>
   );

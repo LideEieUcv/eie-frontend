@@ -1,12 +1,10 @@
+import ListNavigation from '../components/list-nav';
+
 export default function Page() {
   return (
     <div className="grid-cols-1/5  mx-40 mt-12 grid">
       {/* Componente de navegacion lateral */}
-      <ul className="flex h-fit flex-col border-r border-black pb-2">
-        <li className="px-2 py-2 hover:bg-slate-100">Profesores</li>
-        <li className="px-2 py-2 hover:bg-slate-100">Egresados</li>
-        <li className="px-2 py-2 hover:bg-slate-100">Administrativo</li>
-      </ul>
+      <ListNavigation />
       <main className="px-2 pl-4">
         <h3 className="mb-4 text-4xl font-bold">Profesores</h3>
         <div className="w-full border border-slate-600">Barra busqueda</div>

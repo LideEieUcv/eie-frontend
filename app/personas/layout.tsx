@@ -6,8 +6,7 @@ const PeopleLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="w-full ">
-      {/* TODO: component de header */}
+    <div className="w-full pb-4">
       <TitleSection>Personas</TitleSection>
       {children}
     </div>

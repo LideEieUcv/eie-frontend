@@ -18,6 +18,10 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  /* hidding scrollbar */
+  overflow-y: scroll;
+  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none;
   /* background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb)); */
 }
@@ -26,4 +30,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

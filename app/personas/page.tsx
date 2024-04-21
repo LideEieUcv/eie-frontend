@@ -1,4 +1,6 @@
 import ListNavigation from '../components/list-nav';
+import SearchBar from '../components/search-bar';
+import Select from '../components/select';
 
 export default function Page() {
   return (
@@ -7,11 +9,12 @@ export default function Page() {
       <ListNavigation />
       <main className="px-2 pl-4">
         <h3 className="mb-4 text-4xl font-bold">Profesores</h3>
-        <div className="w-full border border-slate-600">Barra busqueda</div>
-        <div className="flex w-full items-center justify-between">
-          <p>58 profesores</p>{' '}
+        {/* <div className="w-full border border-slate-600">Barra busqueda</div> */}
+        <SearchBar />
+        <div className="flex w-full items-center justify-between py-4">
+          <p>58 profesores</p>
           <div className="flex items-center justify-between gap-4">
-            <p>Organizar</p> <div className="border border-slate-600 px-2 py-1">A-Z ^</div>
+            <p>Organizar</p> <Select className="w-40" hasInitialValue />
           </div>
         </div>
         <section className="grid grid-flow-row grid-cols-5 gap-4">

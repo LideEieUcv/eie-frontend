@@ -1,11 +1,14 @@
-export default function Home() {
+import React from 'react';
+import Navbar from '@/app/components/navbar';
+
+const Index = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="">
-        <p className="">
-          Escuela de Ingeniería Eléctrica UCV
-        </p>
-      </div>
-    </main>
+    <div>
+      <Navbar />
+      <h1><center>Escuela de ingenieria Elctricas</center></h1>
+      <p><center> En contruccion, se necesita arreglar.</center></p>
+    </div>
   );
-}
+};
+
+export default Index;

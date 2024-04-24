@@ -4,7 +4,7 @@ import Navbar from '@/app/components/navbar';
 
 const App: React.FC = () => {
   return (
-    <div className="container mx-auto py-0">
+    <div className="container mx-auto py-20">
       {/* Render the Navbar component here */}
       <Navbar />
 

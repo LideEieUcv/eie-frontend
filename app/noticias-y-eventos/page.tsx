@@ -1,9 +1,14 @@
 import React from 'react';
 import Card from '@/app/components/card';
+import Navbar from '@/app/components/navbar';
 
 const App: React.FC = () => {
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-0">
+      {/* Render the Navbar component here */}
+      <Navbar />
+
+      {/* Container for the card grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <Card
           image="https://example.com/image1.jpg"
@@ -24,7 +29,7 @@ const App: React.FC = () => {
           content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
         />
       </div>
-    </div> 
+    </div>
   );
 };
 

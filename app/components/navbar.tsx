@@ -7,11 +7,11 @@ interface NavLink {
 
 const Navbar = () => {
   const navLinks: NavLink[] = [
-    { href: '/', label: 'Noticias y eventos' },
-    { href: '/about', label: 'Personas' },
-    { href: '/contact', label: 'Información Academica' },
-    { href: '/contact', label: 'Investigación' },
-    { href: '/contact', label: 'Acerca de' },
+    { href: '/noticias-y-eventos', label: 'Noticias y eventos' },
+    { href: '/personas', label: 'Personas' },
+    { href: '/informacion-academica', label: 'Información Academica' },
+    { href: '/investigacion', label: 'Investigación' },
+    { href: '/acerca-de', label: 'Acerca de' },
   ];
 
   return (

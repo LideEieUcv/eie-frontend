@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@/app/components/card';
 import Navbar from '@/app/components/navbar';
+import Footer from '@/app/components/footer';
 
 const App: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           date="30 de marzo de 2023"
           content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
         />
+        <Footer />
       </div>
     </div>
   );

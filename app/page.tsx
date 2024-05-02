@@ -7,7 +7,7 @@ const Index = () => {
     <div className="container mx-auto py-20">
       <Navbar />
       <h1><center>Escuela de ingenieria Electrica</center></h1>
-      <p><center> En contruccion, se necesita arreglar.</center></p>
+      <h2><center> En contruccion, se necesita arreglar.</center></h2>
       <Footer />
     </div>
   );

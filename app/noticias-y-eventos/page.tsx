@@ -29,6 +29,42 @@ const App: React.FC = () => {
           date="30 de marzo de 2023"
           content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
         />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
+        <Card
+          image="https://example.com/image3.jpg"
+          title="Título del artículo 3"
+          date="30 de marzo de 2023"
+          content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+        />
         <Footer />
       </div>
     </div>

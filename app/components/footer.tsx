@@ -18,7 +18,7 @@
 
     const Footer: React.FC<FooterProps> = ({}) => {
     return (
-        <footer className="bg-gray-100 text-black p-4 flex flex-col justify-center items-center w-full bottom-0 fixed">
+        <footer className="bg-gray-100 text-black p-4 flex flex-col flex-shrink-0 justify-center items-center w-full bottom-0 fixed">
             {/* Seccion 1: Links */}
 
             <div className="flex flex-row justify-between items-center w-full">

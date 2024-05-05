@@ -18,7 +18,7 @@
 
     const Footer: React.FC<FooterProps> = ({}) => {
     return (
-        <footer className="bg-gray-100 text-black p-4 flex flex-col flex-shrink-0 justify-center items-center w-full bottom-0 fixed">
+        <footer className="bg-gray-50 text-black p-4 flex flex-col justify-center items-center absolute bottom-0 w-full">
             {/* Seccion 1: Links */}
 
             <div className="flex flex-row justify-between items-center w-full">
@@ -45,7 +45,7 @@
             </div>
 
             {/* Seccion 2: Linea divisoria */}
-            <div className="border-t border-gray-700 w-full my-4"></div>
+            <div className="border-t border-gray-950 w-full my-4"></div>
 
             {/* Seccion 3: Logos */}
             <div className="flex flex-row gap-4 items-center justify-between w-full">

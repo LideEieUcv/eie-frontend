@@ -5,7 +5,7 @@ interface BoxProps {
     title: string;
   }
 
-  const Box: React.FC<BoxProps> = ({ image, title }) => {
+const Box: React.FC<BoxProps> = ({ image, title }) => {
     return (
       <div className="border-2 border-gray-500 bg-gray-600 p-4 relative w-[350px] h-64">
         <img src={image} alt="Imagen" className="w-32 h-32 object-cover" />

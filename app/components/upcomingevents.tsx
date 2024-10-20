@@ -1,28 +1,43 @@
-import React from 'react';
+import React from 'react';  
 
-const Calendar = ({ events }) => {
-  return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {events.map((event, index) => (
-        <EventCard key={index} event={event} /> // Pass entire event object for better organization
-      ))}
-    </div>
-  );
-};
+// Definimos la interfaz para el evento  
+interface Event {  
+  date: string;  
+  title: string;  
+  description: string;  
+}  
 
-const EventCard = ({ event }) => {
-  const { date, time, title, description } = event; // Destructuring for cleaner access
+// Definimos la interfaz para los props del componente Calendar  
+interface CalendarProps {  
+  events: Event[];  
+}  
 
-  return (
-    <div className="bg-white shadow-md rounded p-4">
-      <p className="font-bold">Date:</p> {/* Added styling for clarity */}
-      <p>{date}</p>
-      <p className="font-bold">Time:</p> {/* Added styling for clarity */}
-      <p>{time}</p>
-      <h3 className="text-lg font-bold mb-2">{title}</h3> {/* Upgraded title to heading */}
-      <p className="text-sm">{description}</p> {/* Added styling for description */}
-    </div>
-  );
-};
+const Calendar: React.FC<CalendarProps> = ({ events }) => {  
+  return (  
+    <div className="space-y-4">  
+      {events.map((event, index) => (  
+        <EventCard key={index} event={event} />  
+      ))}  
+    </div>  
+  );  
+};  
+
+const EventCard: React.FC<{ event: Event }> = ({ event }) => {  
+  const { date, title, description } = event;  
+
+  return (  
+    <div className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">  
+      <div className="flex-1 pr-4">  
+        <h3 className="text-lg font-semibold mb-1">{title}</h3>  
+        <p className="text-sm text-gray-600 mb-1">{description}</p>  
+        <p className="font-medium text-gray-800">Fecha: {date}</p>  
+      </div>  
+      <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">  
+        Leer articulo →
+      </button>  
+      <hr className="my-4" />  
+    </div>  
+  );  
+};  
 
 export default Calendar;

@@ -5,25 +5,25 @@ import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
 
 const eventsData = [
-  { date: '2022-09-30', time: '10:00 AM', title: 'Evento 1', description: 'Descripción del evento 1' },
-  { date: '2022-10-15', time: '2:00 PM', title: 'Evento 2', description: 'Descripción del evento 2' },
-  { date: '2022-10-30', time: '3:00 PM', title: 'Evento 3', description: 'Descripción del evento 3' },
+  { date: '2022-09-30', title: 'Evento 1', description: 'Descripción del evento 1' },
+  { date: '2022-10-15', title: 'Evento 2', description: 'Descripción del evento 2' },
+  { date: '2022-10-30', title: 'Evento 3', description: 'Descripción del evento 3' },
   // Agrega más eventos si es necesario
 ];
 
 
 const Index = () => {
   return (
-    <div className="container mx-auto py-20">
+    <div className="container mx-auto py-20 w-screen">
       <Navbar />
-      <h1><center>Escuela de ingenieria Electrica</center></h1>
-      <h2><center> En contruccion, se necesita arreglar.</center></h2>
+      <h1 className='text-3xl font-bold my-16'><center>ESCUELA DE INGENIERIA ELECTRICA UCV</center></h1>
+      <h2 className='my-5 font-medium'><center>Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería. Como parte de la <br></br>política e integración de la información UCV, estamos realizando la migración de nuestro<br></br> sitio web al nuevo Portal.</center></h2>
       <div className= "flex flex-row justify-center py-4 gap-x-4">
         <Box image={''} title={'Pregrado'}/>
         <Box image={''} title={'Posgrado'}/>
         <Box image={''} title={'Nuevos ingresos'}/>
       </div>
-      <div className='justify-center flex flex-row '>
+      <div className='justify-center flex flex-row mt-16 mb-16'>
         <Calendar events={eventsData} />
       </div>
       <Footer />

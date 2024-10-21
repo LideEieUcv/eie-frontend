@@ -6,9 +6,6 @@ import Footer from '@/app/components/footer';
 const App: React.FC = () => {
   return (
     <div className="container mx-auto py-20">
-      {/* Render the Navbar component here */}
-      <Navbar />
-
       {/* Container for the card grid */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 w-full gap-5">
         <Card
@@ -65,7 +62,6 @@ const App: React.FC = () => {
           date="30 de marzo de 2023"
           content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
         />
-        <Footer />
       </div>
     </div>
   );

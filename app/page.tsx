@@ -15,7 +15,6 @@ const eventsData = [
 const Index = () => {
   return (
     <div className="container mx-auto py-20">
-      <Navbar />
       <h1 className='text-3xl font-bold mt-16'><center>ESCUELA DE INGENIERIA ELECTRICA UCV</center></h1>
       <h2 className='my-5 font-medium'><center>Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería. Como parte de la <br></br>política e integración de la información UCV, estamos realizando la migración de nuestro<br></br> sitio web al nuevo Portal.</center></h2>
       <div className= "flex flex-row justify-center items-center py-4 gap-x-5 ">
@@ -45,7 +44,20 @@ const Index = () => {
       <div className='justify-center flex flex-row mt-16 mb-16'>
         <Calendar events={eventsData} />
       </div>
-      <Footer />
+
+      <div className='flex flex-col'>
+        <div className='flex'>  
+          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
+        </div>
+        <div className='flex '>  
+          <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Más eventos →</a>  
+        </div>
+
+        <div className="p-8 grid-row">
+          <Calendar events={eventsData} />  
+        </div> 
+      </div>
+
     </div>
   );
 };

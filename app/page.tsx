@@ -3,6 +3,7 @@ import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
+import Card from '@/app/components/card';
 
 const eventsData = [
   { date: '2022-09-30', title: 'Evento 1', description: 'Descripción del evento 1' },
@@ -31,6 +32,16 @@ const Index = () => {
           <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Mas noticias →</a>
         </div>
       </div>
+
+      <div className='grid grid-cols-1 mt-10 px-96 h-[400px] w-full'>
+        <Card
+          image="https://example.com/image1.jpg"
+          title="Título del artículo 1"
+          date="1 de enero de 2023"
+          content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+        />
+      </div>
+
       <div className='justify-center flex flex-row mt-16 mb-16'>
         <Calendar events={eventsData} />
       </div>

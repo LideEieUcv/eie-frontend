@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({ image, title, date, content }) => {
         <h1 className="text-gray-500 text-sm mb-2">{date}</h1>
         <h2 className="text-lg font-bold mb-2">{title}</h2>
         <p className="text-gray-700">{content}</p>
-        <a href="#" className="inline-block border-2 border border-black mt-10 p-2 text-blue-500 hover:text-blue-700 flex flex-shrink flex-grow object-fit">
+        <a href="#" className="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600 transition flex flex-shrink flex-grow object-fit">
           Leer artículo →
         </a>
       </div>

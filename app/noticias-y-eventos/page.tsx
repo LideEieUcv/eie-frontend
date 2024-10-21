@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <Navbar />
 
       {/* Container for the card grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 w-full gap-5">
         <Card
           image="https://example.com/image1.jpg"
           title="Título del artículo 1"

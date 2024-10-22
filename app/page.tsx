@@ -4,6 +4,7 @@ import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
 import Card from '@/app/components/card';
+import MiniCard from '@/app/components/minicard';
 
 const eventsData = [
   { date: '2022-09-30', title: 'Evento 1', description: 'Descripción del evento 1' },
@@ -49,13 +50,26 @@ const Index = () => {
         <div className='flex'>  
           <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
         </div>
-        <div className='flex '>  
+        <div className='flex'>  
           <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Más eventos →</a>  
         </div>
-
-        <div className="p-8 grid-row">
-          <Calendar events={eventsData} />  
-        </div> 
+        <div className='grid grid-cols-3 w-full'>
+          <MiniCard
+            title="Título del artículo 1"
+            date="1 de enero de 2023"
+            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+          />
+          <MiniCard
+            title="Título del artículo 2"
+            date="1 de enero de 2024"
+            content="Este es el contenido del artículo 2. Aquí puedes agregar una descripción más detallada."
+          />
+          <MiniCard
+            title="Título del artículo 3"
+            date="1 de enero de 2025"
+            content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
+          />
+        </div>
       </div>
 
     </div>

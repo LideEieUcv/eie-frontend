@@ -1,6 +1,6 @@
-    import React from 'react';
-    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-    import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
     interface FacebookIconProps {}
 

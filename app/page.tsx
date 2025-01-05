@@ -29,12 +29,13 @@ const Index = () => {
       </div>
     </div>
 
+
     {/*  
       <div className="text-wrapper">
         <LoremIpsum p={2} />
       </div>
     */}
-
+    {/*
       <div className='mt-10 flex flex-row justify-center items-center'>
         <div className='justify-start mr-40'>
           <h1 className='font-extrabold text-3xl'>Ultimas noticias</h1>
@@ -55,8 +56,9 @@ const Index = () => {
 
       <div className='justify-center flex flex-row mt-16 mb-16'>
         <Calendar events={eventsData} />
-      </div>
+      </div>*/}
 
+      {/*
       <div className='flex flex-col'>
         <div className='flex'>  
           <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
@@ -81,7 +83,7 @@ const Index = () => {
             content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
           />
         </div>
-      </div>
+      </div>*/}
     </>
   );
 };

@@ -49,13 +49,31 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/
                 {/* Seccion 3: Logos */}
                 <div className="bg-white flex flex-row gap-4 items-center justify-between w-full">
                     <div className="flex flex-col items-center">
-                        <a href="/" className="text-gray-800 border border-black font-bold text-base">LOGO UCV</a>
+                        <a href="/" className="flex items-center">
+                            <img
+                                src="ruta/a/tu/logo.png"
+                                alt="Logo UCV"
+                                className="h-10 w-auto"
+                            />
+                        </a>
                     </div>
                     <div className="flex flex-col items-center">
-                        <a href="/" className="text-gray-800 border border-black font-bold text-base">LOGO UCV ING.</a>
+                        <a href="/" className="flex items-center">
+                            <img
+                                src="ruta/a/tu/logo.png"
+                                alt="Logo UCV"
+                                className="h-10 w-auto"
+                            />
+                        </a>
                     </div>
                     <div className="flex flex-col items-center">
-                        <a href="/" className="text-gray-800 border border-black font-bold text-base">LOGO UCV ELEC.</a>
+                        <a href="/" className="flex items-center">
+                            <img
+                                src="ruta/a/tu/logo.png"
+                                alt="Logo UCV"
+                                className="h-10 w-auto"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>

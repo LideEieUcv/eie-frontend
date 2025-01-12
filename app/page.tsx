@@ -22,7 +22,7 @@ const Index = () => {
     <div className='mx-auto py-20'>
       <h1 className='text-3xl font-bold mt-16'><center>ESCUELA DE INGENIERIA ELECTRICA UCV</center></h1>
       <h2 className='my-5 font-medium'><center>Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería. Como parte de la <br></br>política e integración de la información UCV, estamos realizando la migración de nuestro<br></br> sitio web al nuevo Portal.</center></h2>
-      <div className= "flex flex-row justify-center items-center py-4 gap-x-5 ">
+      <div className= "flex flex-row justify-center items-center py-4 gap-x-5">
         <Box image={''} title={'Pregrado'}/>
         <Box image={''} title={'Posgrado'}/>
         <Box image={''} title={'Nuevos ingresos'}/>
@@ -35,25 +35,24 @@ const Index = () => {
         <LoremIpsum p={2} />
       </div>
     */}
-    {/*
-      <div className='mt-10 flex flex-row justify-center items-center'>
-        <div className='justify-start mr-40'>
+    
+    {/* Segunda seccion */}
+      <div className='bg-white mt-10 flex flex-col justify-center items-center'>
+        <div className='flex space-x-80'>
           <h1 className='font-extrabold text-3xl'>Ultimas noticias</h1>
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas noticias<span className='ml-4'>→</span></a>
         </div>
-        <div className='justify-end'>
-          <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Mas noticias →</a>
+        <div className='grid grid-cols-1 mt-10 px-5 h-auto'>
+          <Card
+            image="https://example.com/image1.jpg"
+            title="Título del artículo 1"
+            date="1 de enero de 2023"
+            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+          />
         </div>
       </div>
 
-      <div className='grid grid-cols-1 mt-10 px-96 h-[400px] w-full'>
-        <Card
-          image="https://example.com/image1.jpg"
-          title="Título del artículo 1"
-          date="1 de enero de 2023"
-          content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-        />
-      </div>
-
+      {/*
       <div className='justify-center flex flex-row mt-16 mb-16'>
         <Calendar events={eventsData} />
       </div>*/}

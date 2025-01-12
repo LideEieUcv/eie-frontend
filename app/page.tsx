@@ -85,9 +85,32 @@ const Index = () => {
         </div>
       </div>*/}
 
+      {/* Tercera seccion */}
+      <div className='flex flex-col md:flex-row justify-center items-center min-h-96 bg-gray-50 w-full text-center text-black'>  
+        <div className='hidden md:flex justify-center order-first w-1/2 md:w-1/3'>  
+          <img src='images/ucv_pg.png' alt='CONVENIO' className='rounded-full'/>  
+        </div>   
+
+        <div className='flex flex-col items-center space-y-8 w-full md:w-1/3'>  
+          <h1 className='text-lg font-semibold'>  
+            Comienza tus estudios en Caracas, y terminalos en Italia con nuestro convenio  
+          </h1>  
+          <h2 className='text-sm font-medium text-center'>  
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore impedit debitis quam consequuntur nihil, totam commodi cum illum quos blanditiis cumque quod, delectus expedita quidem nostrum minus, odio asperiores assumenda.  
+          </h2>  
+          <div className='mt-4'>  
+            <a  
+              href="/"  
+              className='w-full max-w-xs font-bold border-2 border-black text-md text-black px-4 py-2 hover:text-gray-400 transition text-center'>  
+              Ver requerimientos <span className='ml-2'>→</span>  
+            </a>  
+          </div>  
+        </div>  
+      </div>
+
       {/* Cuarta seccion */}
       <div className='flex flex-row justify-center items-center min-h-96 bg-gray-50 text-center text-black'>
-        <div className='flex-col items-start space-y-5 px-24 w-1/2 hidden md:block'>
+        <div className='flex-col items-start space-y-5 w-1/3 hidden md:block'>
           <h1 className='text-lg font-bold text-left ml-20'>Ciclo de inscripciones<br></br>2024-2025</h1>
           <p className='text-sm font-medium text-left ml-20'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!</p>
         </div>

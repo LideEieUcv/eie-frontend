@@ -1,10 +1,13 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
 import Card from '@/app/components/card';
+import Newscard from './components/newscard';
 import MiniCard from '@/app/components/minicard';
+import { loremIpsum } from 'react-lorem-ipsum';
 //import { LoremIpsum } from 'react-lorem-ipsum';
 
 const eventsData = [
@@ -28,16 +31,9 @@ const Index = () => {
         <Box image={''} title={'Nuevos ingresos'}/>
       </div>
     </div>
-
-
-    {/*  
-      <div className="text-wrapper">
-        <LoremIpsum p={2} />
-      </div>
-    */}
     
     {/* Segunda seccion */}
-      <div className='bg-white mt-10 flex flex-col justify-center items-center'>
+      <div className='bg-white mt-10 flex flex-col justify-center items-center w-full'>
         <div className='flex space-x-80'>
           <h1 className='font-extrabold text-3xl'>Ultimas noticias</h1>
           <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas noticias<span className='ml-4'>→</span></a>
@@ -50,6 +46,37 @@ const Index = () => {
             content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
           />
         </div>
+        {/* Seccion de noticias 3 minimo */}
+        <div className='mt-2 md:mt-2 bg-white'>  
+          <Newscard  
+            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
+            date="5 de diciembre de 2023"  
+            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
+            link="/"  
+          /> 
+        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
+        </div>
+        {/*Noticia 2 */}
+        <div className='mt-2 md:mt-2 bg-white'>  
+          <Newscard  
+            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
+            date="5 de diciembre de 2023"  
+            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
+            link="/"  
+          /> 
+        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
+        </div>
+        {/*Noticia 3 */}
+        <div className='mt-2 md:mt-2 bg-white'>  
+          <Newscard  
+            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
+            date="5 de diciembre de 2023"  
+            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
+            link="/"  
+          /> 
+        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
+        </div>
+        
       </div>
 
       {/*

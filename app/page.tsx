@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+//import { motion } from 'framer-motion'; 
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
@@ -22,14 +23,30 @@ const Index = () => {
     <>
     {/*Primera seccion*/}
 
-    <div className='mx-auto py-20'>
-      <h1 className='text-3xl font-bold mt-16'><center>ESCUELA DE INGENIERIA ELECTRICA UCV</center></h1>
-      <h2 className='my-5 font-medium'><center>Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería. Como parte de la <br></br>política e integración de la información UCV, estamos realizando la migración de nuestro<br></br> sitio web al nuevo Portal.</center></h2>
-      <div className= "flex flex-row justify-center items-center py-4 gap-x-5">
-        <Box image={''} title={'Pregrado'}/>
-        <Box image={''} title={'Posgrado'}/>
-        <Box image={''} title={'Nuevos ingresos'}/>
-      </div>
+    <div className="mx-auto py-20 max-w-6xl px-4">  
+      <h1 className="text-3xl font-bold text-center mt-16">ESCUELA DE INGENIERIA ELECTRICA UCV</h1>  
+      <h2 className="my-5 font-medium text-center">  
+        Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería.  
+        Como parte de la <br /> política e integración de la información UCV, estamos realizando  
+        la migración de nuestro <br /> sitio web al nuevo Portal.  
+      </h2>  
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 mt-6">  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+      </div>  
     </div>
     
     {/* Segunda seccion */}

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+//import { motion } from 'framer-motion'; 
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
@@ -22,14 +23,30 @@ const Index = () => {
     <>
     {/*Primera seccion*/}
 
-    <div className='mx-auto py-20'>
-      <h1 className='text-3xl font-bold mt-16'><center>ESCUELA DE INGENIERIA ELECTRICA UCV</center></h1>
-      <h2 className='my-5 font-medium'><center>Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería. Como parte de la <br></br>política e integración de la información UCV, estamos realizando la migración de nuestro<br></br> sitio web al nuevo Portal.</center></h2>
-      <div className= "flex flex-row justify-center items-center py-4 gap-x-5">
-        <Box image={''} title={'Pregrado'}/>
-        <Box image={''} title={'Posgrado'}/>
-        <Box image={''} title={'Nuevos ingresos'}/>
-      </div>
+    <div className="mx-auto py-20 max-w-6xl px-4">  
+      <h1 className="text-3xl font-bold text-center mt-16">ESCUELA DE INGENIERIA ELECTRICA UCV</h1>  
+      <h2 className="my-5 font-medium text-center">  
+        Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería.  
+        Como parte de la <br /> política e integración de la información UCV, estamos realizando  
+        la migración de nuestro <br /> sitio web al nuevo Portal.  
+      </h2>  
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 mt-6">  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+        <div className="flex justify-center">  
+          <a href="/" className="block"> 
+            <Box image={''} title={'Pregrado'} />  
+          </a>  
+        </div>  
+      </div>  
     </div>
     
     {/* Segunda seccion */}
@@ -117,38 +134,6 @@ const Index = () => {
                 </div>  
             </div>
       </div>
-
-      {/*
-      <div className='justify-center flex flex-row mt-16 mb-16'>
-        <Calendar events={eventsData} />
-      </div>*/}
-
-      {/*
-      <div className='flex flex-col'>
-        <div className='flex'>  
-          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
-        </div>
-        <div className='flex'>  
-          <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Más eventos →</a>  
-        </div>
-        <div className='grid grid-cols-3 w-full'>
-          <MiniCard
-            title="Título del artículo 1"
-            date="1 de enero de 2023"
-            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-          />
-          <MiniCard
-            title="Título del artículo 2"
-            date="1 de enero de 2024"
-            content="Este es el contenido del artículo 2. Aquí puedes agregar una descripción más detallada."
-          />
-          <MiniCard
-            title="Título del artículo 3"
-            date="1 de enero de 2025"
-            content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
-          />
-        </div>
-      </div>*/}
 
       {/* Tercera seccion */}
       <div className='flex flex-col md:flex-row justify-center items-center min-h-96 bg-gray-50 w-full text-center text-black'>  

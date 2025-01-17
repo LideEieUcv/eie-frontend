@@ -78,20 +78,44 @@ const Index = () => {
         </div>
 
         {/* Proximos eventos */}
-        <div className='flex space-x-80 mt-20 mb-10'>
-          <h1 className='font-extrabold text-3xl'>Proximos eventos</h1>
-          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas eventos<span className='ml-4'>→</span></a>
-        </div>
-        <div className='grid grid-cols-3 w-full'>
-          <MiniCard
-            title="Defensa de tesis"
-            date= {5}
-            day="Martes"
-            month="Diciembre"
-            hour="2:00 pm"
-            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-          />
-        </div>
+        <div className='flex space-x-80 mt-20 mb-10'>  
+                <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
+                <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>  
+            </div>  
+            <div className="flex justify-center">  
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">  
+                    <div className="flex justify-center"> {/* Contenedor para centrar cada MiniCard */}  
+                        <MiniCard  
+                            title="Defensa de tesis"  
+                            date={5}  
+                            day="Martes"  
+                            month="Diciembre"  
+                            hour="2:00 pm"  
+                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
+                        />  
+                    </div>  
+                    <div className="flex justify-center">  
+                        <MiniCard  
+                            title="Defensa de tesis"  
+                            date={5}  
+                            day="Martes"  
+                            month="Diciembre"  
+                            hour="2:00 pm"  
+                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
+                        />  
+                    </div>  
+                    <div className="flex justify-center">  
+                        <MiniCard  
+                            title="Defensa de tesis"  
+                            date={5}  
+                            day="Martes"  
+                            month="Diciembre"  
+                            hour="2:00 pm"  
+                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
+                        />  
+                    </div>  
+                </div>  
+            </div>
       </div>
 
       {/*

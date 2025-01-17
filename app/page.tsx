@@ -76,7 +76,22 @@ const Index = () => {
           /> 
         <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
         </div>
-        
+
+        {/* Proximos eventos */}
+        <div className='flex space-x-80 mt-20 mb-10'>
+          <h1 className='font-extrabold text-3xl'>Proximos eventos</h1>
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas eventos<span className='ml-4'>→</span></a>
+        </div>
+        <div className='grid grid-cols-3 w-full'>
+          <MiniCard
+            title="Defensa de tesis"
+            date= {5}
+            day="Martes"
+            month="Diciembre"
+            hour="2:00 pm"
+            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+          />
+        </div>
       </div>
 
       {/*

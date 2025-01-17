@@ -118,38 +118,6 @@ const Index = () => {
             </div>
       </div>
 
-      {/*
-      <div className='justify-center flex flex-row mt-16 mb-16'>
-        <Calendar events={eventsData} />
-      </div>*/}
-
-      {/*
-      <div className='flex flex-col'>
-        <div className='flex'>  
-          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
-        </div>
-        <div className='flex'>  
-          <a href="/noticias-y-eventos" className='font-bold text-md bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>Más eventos →</a>  
-        </div>
-        <div className='grid grid-cols-3 w-full'>
-          <MiniCard
-            title="Título del artículo 1"
-            date="1 de enero de 2023"
-            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-          />
-          <MiniCard
-            title="Título del artículo 2"
-            date="1 de enero de 2024"
-            content="Este es el contenido del artículo 2. Aquí puedes agregar una descripción más detallada."
-          />
-          <MiniCard
-            title="Título del artículo 3"
-            date="1 de enero de 2025"
-            content="Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada."
-          />
-        </div>
-      </div>*/}
-
       {/* Tercera seccion */}
       <div className='flex flex-col md:flex-row justify-center items-center min-h-96 bg-gray-50 w-full text-center text-black'>  
         <div className='hidden md:flex justify-center order-first w-1/2 md:w-1/3'>  

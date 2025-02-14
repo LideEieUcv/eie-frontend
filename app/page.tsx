@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 //import { motion } from 'framer-motion'; 
-import Navbar from '@/app/components/navbar';
-import Footer from '@/app/components/footer';
 import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
 import Card from '@/app/components/card';

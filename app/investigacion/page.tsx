@@ -1,12 +1,13 @@
 import React from 'react';
-import Navbar from '@/app/components/navbar';
-import Footer from '@/app/components/footer';
 
 const Index = () => {
   return (
-    <div className="container mx-auto py-20">
-      <h1><center>Investigacion</center></h1>
-    </div>
+    <>
+      {/* Título principal */}
+      <div className='min-h-96 bg-gray-300 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
+        <h1>INVESTIGACION</h1>
+      </div>
+    </>
   );
 };
 

@@ -13,8 +13,7 @@ const Navbar: React.FC = () => {
     { href: '/noticias-y-eventos', label: 'Noticias y eventos' },  
     { href: '/personas', label: 'Personas' },  
     { href: '/informacion-academica', label: 'Información Académica' },  
-    { href: '/investigacion', label: 'Investigación' },  
-    { href: '/acerca-de', label: 'Acerca de' },  
+    { href: '/investigacion', label: 'Investigación' }, 
   ];  
 
   return (  

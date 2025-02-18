@@ -1,12 +1,12 @@
-"use client";
+"use client";  
 import React from 'react';  
-import Card from '../components/infocard'; // Asegúrate de que la ruta al componente Card sea correcta  
+import Card from '../components/infocard';  
 
 const Index = () => {  
   return (  
     <>  
       {/* Título principal */}  
-      <div className='min-h-96 bg-gray-300 mb-5 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4'>  
+      <div className='min-h-96 bg-gray-300 mb-5 flex flex-col items-center justify-center text-black text-2xl md:text-3xl lg:text-4xl font-extrabold text-center px-4'>  
         <h1>INFORMACION ACADEMICA</h1>  
       </div>  
 
@@ -27,16 +27,21 @@ const Index = () => {
           />  
         </div>  
 
-        <div className="bg-white mt-6 p-4 w-full max-w-4xl border border-black">  
-          <h3 className="text-lg font-semibold">Convenios</h3>  
-          <p>Lorem ipsum dolor sit amet consectetur. Diam vitae tellus est pellentesque. Sed suspendisse aenean...</p>  
-          <button className="text-blue-500 hover:underline mt-2">Ver más →</button>  
+        <div className="bg-white mt-6 p-4 w-full max-w-4xl border-2 border-black">  
+          <h3 className="text-base md:text-lg font-semibold">Convenios</h3>  
+          <p className="text-sm md:text-base">Lorem ipsum dolor sit amet consectetur. Diam vitae tellus est pellentesque. Sed suspendisse aenean...</p>  
+          <div className='flex justify-end'>  
+            <button className="text-black font-semibold hover:text-gray-500 transition mt-2 border-2 border-black p-1">Ver más →</button>  
+          </div>  
+        
         </div>  
 
-        <div className="bg-white p-4 m-2 border border-black w-full max-w-4xl mt-4">  
-          <h3 className="text-lg font-semibold">Nuevos ingresos</h3>  
-          <p>Lorem ipsum dolor sit amet consectetur. Diam vitae tellus est pellentesque. Sed suspendisse aenean...</p>  
-          <button className="text-blue-500 hover:underline mt-2">Ver más →</button>  
+        <div className="bg-white p-4 m-2 border-2 border-black w-full max-w-4xl mt-4">  
+          <h3 className="text-base md:text-lg font-semibold">Nuevos ingresos</h3>  
+          <p className="text-sm md:text-base">Lorem ipsum dolor sit amet consectetur. Diam vitae tellus est pellentesque. Sed suspendisse aenean...</p>  
+          <div className="flex justify-end">  
+            <button className="text-black font-semibold hover:text-gray-500 transition mt-2 border-2 border-black p-1">Ver más →</button>  
+          </div>  
         </div>  
       </div>  
     </>  

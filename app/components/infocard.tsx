@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({ title, description, items, buttonText }) =>
       </ul>
     )}
     <div className="flex justify-end"> {/* Contenedor flex para alinear el botón a la derecha */}
-      <button className="mt-4 text-black hover:text-gray-500 transition border-2 border-black p-1">
+      <button className="mt-4 text-black font-semibold hover:text-gray-500 transition border-2 border-black p-1">
         {buttonText}
       </button>
     </div>

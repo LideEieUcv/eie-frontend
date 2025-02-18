@@ -94,17 +94,23 @@ const Index: React.FC = () => {
         {/* Contenedor de las tarjetas y búsqueda */}
         <div className="flex-grow lg:pl-8 px-4">
           {/* Sección de Búsqueda y Ordenamiento */}
-          <div className='flex flex-col lg:flex-row lg:space-x-5 mb-5 justify-between items-center'>
-            <h1 className='font-extrabold text-2xl lg:text-3xl mb-4 lg:mb-0'>Lista de Personas</h1>
-            <div className="flex flex-col items-end space-y-4">
-              <SearchBar
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                className="w-64 md:w-[900px] border border-black rounded-none"
-              />
-              <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
-            </div>
+          <div className='flex flex-row items-center justify-between mb-5 space-x-4'>
+          {/* Título dinámico */}
+          <h1 className='font-extrabold text-2xl lg:text-3xl'>{activeMenu}</h1>
+          
+          {/* Contenedor de SearchBar y SortButton */}
+          <div className="flex flex-col items-end space-y-4 ">
+            <SearchBar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              className="w-64 md:w-[900px] border border-black rounded-none"
+            />
+          <div className="flex items-center space-x-2">
+            <span className="font-semibold flex items-center mb-4">Organizar</span>
+            <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
           </div>
+          </div>
+        </div>
 
           {/* Sección de Personas */}
           <div id="personas" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-14">

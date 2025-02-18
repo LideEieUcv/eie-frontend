@@ -1,30 +1,35 @@
 import React from 'react';
 
-interface SideMenuProps {
-  title: string;
-  menuItems: { label: string; href: string }[];
-  activeMenu: string;
+interface MenuItem {
+  label: string;
+  href: string;
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ title, menuItems, activeMenu }) => {
+interface SideMenuProps {
+  menuItems: MenuItem[];
+  activeMenu: string;
+  onItemClick: (label: string) => void;
+}
+
+const SideMenu: React.FC<SideMenuProps> = ({ menuItems, activeMenu, onItemClick }) => {
   return (
-    <nav className="hidden lg:block w-64 p-4 sticky top-4 h-fit ml-20">
-      <h2 className="font-bold text-lg mb-4">{title}</h2>
+    <div className="w-64 h-full bg-transparent text-black p-4">
       <ul className="space-y-2">
-        {menuItems.map((item, index) => (
-          <li key={index}>
+        {menuItems.map((item) => (
+          <li key={item.label}>
             <a
               href={item.href}
-              className={`block text-gray-700 hover:text-blue-500 transition-colors duration-200 ${
-                activeMenu === item.label ? 'font-bold text-blue-500' : ''
-              }`}
+              onClick={() => onItemClick(item.label)}
+              className={`block px-4 py-2 rounded-lg transition-colors duration-300 
+                ${activeMenu === item.label ? 'bg-white/10 text-black font-bold' : 'text-black'} 
+                hover:text-gray-500`}
             >
               {item.label}
             </a>
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   );
 };
 

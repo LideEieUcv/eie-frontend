@@ -78,7 +78,7 @@ const App: React.FC = () => {
         {/* Contenedor de las tarjetas y eventos */}
         <div className="flex-grow lg:pl-8 px-4">
           {/* Sección de Noticias */}
-          <div className='flex flex-col lg:flex-row lg:space-x-5 mb-5 justify-between items-center'>
+          <div className='flex flex-col lg:flex-row lg:space-x-5 mb-5 justify-center gap-x-96 items-center'>
             <h1 className='font-extrabold text-2xl lg:text-3xl mb-4 lg:mb-0'>Últimas noticias</h1>
             <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>
               Más noticias<span className='ml-4'>→</span>
@@ -98,13 +98,13 @@ const App: React.FC = () => {
 
           {/* Sección de Próximos Eventos */}
           <div id="proximos-eventos" className="mt-10 lg:mt-20">
-            <div className='flex flex-col lg:flex-row lg:-space-x-80 mb-10 justify-between items-center'>
+            <div className='flex flex-col lg:flex-row lg:space-x-80 mb-1 justify-center items-center'>
               <h1 className="font-extrabold text-2xl lg:text-3xl mb-4 lg:mb-0">Próximos eventos</h1>
               <a
                 href="/noticias-y-eventos"
                 className="font-bold text-md text-black hover:text-gray-500 transition"
               >
-                Más eventos<span className="ml-4">→</span>
+                Más eventos<span className="ml-0">→</span>
               </a>
             </div>
             <div className="flex justify-center">

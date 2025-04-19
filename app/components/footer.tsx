@@ -18,7 +18,7 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/
 
     const Footer: React.FC<FooterProps> = ({}) => {
     return (
-        <footer className="bg-white text-black flex flex-col justify-center items-center absolute bottom-0 w-full">
+        <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white flex flex-col justify-center items-center absolute bottom-0 w-full h-min">
             <div className='container mx-auto flex-row md:flex-row justify-between px-4 hidden md:block'>
                 <div className="flex flex-row justify-between gap-x-14">
                     <div className="flex flex-col items-start">
@@ -31,23 +31,23 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/
                         <a href="#" className="text-xs hover:text-gray-300">Contacto</a>
                     </div>
                     <div className="flex flex-row gap-x-5">
-                        <a href="#" className="text-blue-600 hover:text-blue-800">
+                        <a href="#" className="text-blue-400 hover:text-blue-800">
                             <FontAwesomeIcon icon={faFacebookF} className="w-6 h-6" />
                         </a>
-                        <a href="#" className="text-blue-600 hover:text-blue-800">
+                        <a href="#" className="text-blue-400 hover:text-blue-800">
                             <FontAwesomeIcon icon={faLinkedinIn} className="w-6 h-6" />
                         </a>
-                        <a href="#" className="text-blue-600 hover:text-blue-800">
+                        <a href="#" className="text-blue-400 hover:text-blue-800">
                             <FontAwesomeIcon icon={faTwitter} className="w-6 h-6" />
                         </a>
                     </div>
                 </div>
 
                 {/* Seccion 2: Linea divisoria */}
-                <div className="border-t border-gray-950 w-full my-4"></div>
+                <div className="border-t border-white w-full my-4"></div>
 
                 {/* Seccion 3: Logos */}
-                <div className="bg-white flex flex-row gap-4 items-center justify-between w-full">
+                <div className=" flex flex-row gap-4 items-center justify-between w-full">
                     <div className="flex flex-col items-center">
                         <a href="/" className="flex items-center">
                             <img
@@ -79,7 +79,7 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/
             </div>
 
             <div className='container mx-auto flex-row block md:hidden'>
-                <div className="border-t border-gray-950 w-full my-4"></div>
+                <div className="border-t border-white w-full my-4"></div>
                 <div className='flex flex-row justify-between'>
                     <div className='flex flex-col py-4 gap-y-3 items-start text-center'>
                         <a href="#" className="text-sm hover:text-gray-300">Pregrado</a>

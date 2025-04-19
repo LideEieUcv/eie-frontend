@@ -21,9 +21,9 @@ const Index = () => {
     <>
     {/*Primera seccion*/}
 
-    <div className="mx-auto py-20 max-w-6xl px-4">  
-      <h1 className="text-3xl font-bold text-center mt-16">ESCUELA DE INGENIERIA ELECTRICA UCV</h1>  
-      <h2 className="my-5 font-medium text-center">  
+    <div className="flex flex-col py-5 w-full px-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white">  
+      <h1 className="text-5xl font-bold text-center mt-16">ESCUELA DE INGENIERIA ELECTRICA UCV</h1>  
+      <h2 className="my-5 font-medium text-center text-xl">  
         Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería.  
         Como parte de la <br /> política e integración de la información UCV, estamos realizando  
         la migración de nuestro <br /> sitio web al nuevo Portal.  
@@ -48,7 +48,7 @@ const Index = () => {
     </div>
     
     {/* Segunda seccion */}
-      <div className='bg-white mt-10 flex flex-col justify-center items-center w-full'>
+      <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>
         <div className='flex space-x-80'>
           <h1 className='font-extrabold text-3xl'>Ultimas noticias</h1>
           <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas noticias<span className='ml-4'>→</span></a>
@@ -182,7 +182,6 @@ const Index = () => {
           </div>  
         </div>   
       </div>
-
     </>
   );
 };

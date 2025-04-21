@@ -7,16 +7,48 @@ import Card from '@/app/components/card';
 import Newscard from './components/newscard';
 import MiniCard from '@/app/components/minicard';
 import { loremIpsum } from 'react-lorem-ipsum';
-//import { LoremIpsum } from 'react-lorem-ipsum';
+import axios from 'axios'; 
 
-const eventsData = [
-  { date: '2022-09-30', title: 'Evento 1', description: 'Descripción del evento 1' },
-  { date: '2022-10-15', title: 'Evento 2', description: 'Descripción del evento 2' },
-  { date: '2022-10-30', title: 'Evento 3', description: 'Descripción del evento 3' },
-  // Agrega más eventos si es necesario
-];
+// Interfaces actualizadas para coincidir con el backend
+interface Noticia {
+  id: number;
+  title: string;
+  date: string;
+  content: string;
+  imageUrl?: string;
+}
+
+interface Evento {
+  id: number;
+  title: string;
+  date: number;
+  day: string;
+  month: string;
+  hour: string;
+  description?: string;
+}
 
 const Index = () => {
+
+  const [noticias, setNoticias] = useState<Noticia[]>([]);  
+  const [eventos, setEventos] = useState<Evento[]>([]);  
+
+  useEffect(() => {  
+    const fetchData = async () => {  
+      try {  
+        const noticiasResponse = await axios.get('/noticias');  
+        setNoticias(noticiasResponse.data);  
+
+        const eventosResponse = await axios.get('/eventos');  
+        setEventos(eventosResponse.data);  
+      } catch (error) {  
+        console.error('Error al obtener datos desde el backend:', error);  
+      }  
+    };  
+
+    fetchData();  
+  }, []); 
+
   return (
     <>
     {/*Primera seccion*/}
@@ -47,90 +79,67 @@ const Index = () => {
       </div>  
     </div>
     
-    {/* Segunda seccion */}
-      <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>
-        <div className='flex space-x-80'>
-          <h1 className='font-extrabold text-3xl'>Ultimas noticias</h1>
-          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Mas noticias<span className='ml-4'>→</span></a>
-        </div>
-        <div className='grid grid-cols-1 mt-10 px-5 h-auto'>
-          <Card
-            image="https://example.com/image1.jpg"
-            title="Título del artículo 1"
-            date="1 de enero de 2023"
-            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-          />
-        </div>
-        {/* Seccion de noticias 3 minimo */}
-        <div className='mt-2 md:mt-2 bg-white'>  
-          <Newscard  
-            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
-            date="5 de diciembre de 2023"  
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
-            link="/"  
-          /> 
-        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
-        </div>
-        {/*Noticia 2 */}
-        <div className='mt-2 md:mt-2 bg-white'>  
-          <Newscard  
-            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
-            date="5 de diciembre de 2023"  
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
-            link="/"  
-          /> 
-        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
-        </div>
-        {/*Noticia 3 */}
-        <div className='mt-2 md:mt-2 bg-white'>  
-          <Newscard  
-            title='Un título de noticia largo y de prueba para ver como queda con dos líneas o tres líneas al menos'  
-            date="5 de diciembre de 2023"  
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!"  
-            link="/"  
-          /> 
-        <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
-        </div>
+      {/* Segunda sección */}  
+      <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>  
+        <div className='flex space-x-80'>  
+          <h1 className='font-extrabold text-3xl'>Últimas noticias</h1>  
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más noticias<span className='ml-4'>→</span></a>  
+        </div>  
+        <div className='grid grid-cols-1 mt-10 px-5 h-auto'>  
+          {noticias.length > 0 ? (  
+            noticias.map((noticia, index) => (  
+              <Card  
+                key={index}  
+                image="https://example.com/image1.jpg" // Cambia esto si tienes imágenes.  
+                title={noticia.title}  
+                date={noticia.date}  
+                content={noticia.content}  
+              />  
+            ))  
+          ) : (  
+            <p>No hay noticias disponibles.</p>  
+          )}  
+        </div>  
 
-        {/* Proximos eventos */}
+        {/* Sección de noticias (3 mínimo) */}  
+        <div className='mt-2 md:mt-2 bg-white'>  
+          {noticias.slice(0, 3).map((noticia, index) => (  
+            <Newscard  
+              key={index}  
+              title={noticia.title}  
+              date={noticia.date}  
+              content={noticia.content}  
+              link="/"  
+            />  
+          ))}  
+          <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
+        </div>  
+
+        {/* Próximos eventos */}  
         <div className='flex space-x-80 mt-20 mb-10'>  
-                <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
-                <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>  
-            </div>  
-            <div className="flex justify-center">  
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">  
-                    <div className="flex justify-center"> {/* Contenedor para centrar cada MiniCard */}  
-                        <MiniCard  
-                            title="Defensa de tesis"  
-                            date={5}  
-                            day="Martes"  
-                            month="Diciembre"  
-                            hour="2:00 pm"  
-                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
-                        />  
-                    </div>  
-                    <div className="flex justify-center">  
-                        <MiniCard  
-                            title="Defensa de tesis"  
-                            date={5}  
-                            day="Martes"  
-                            month="Diciembre"  
-                            hour="2:00 pm"  
-                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
-                        />  
-                    </div>  
-                    <div className="flex justify-center">  
-                        <MiniCard  
-                            title="Defensa de tesis"  
-                            date={5}  
-                            day="Martes"  
-                            month="Diciembre"  
-                            hour="2:00 pm"  
-                            content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
-                        />  
-                    </div>  
+          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>  
+        </div>  
+        <div className="flex justify-center">  
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">  
+            {eventos.length > 0 ? (  
+              eventos.map((evento, index) => (  
+                <div className="flex justify-center" key={index}>  
+                  <MiniCard  
+                    title={evento.title}  
+                    date={evento.date}  
+                    day={evento.day}  
+                    month={evento.month}  
+                    hour={evento.hour}  
+                    content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
+                  />  
                 </div>  
-            </div>
+              ))  
+            ) : (  
+              <p>No hay eventos disponibles.</p>  
+            )}  
+          </div>  
+        </div>  
       </div>
 
       {/* Tercera seccion */}

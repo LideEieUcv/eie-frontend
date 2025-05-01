@@ -10,6 +10,7 @@ interface Persona {
   nombre: string;
   descripcion: string;
   imagen: string;
+  categoria: 'Profesores' | 'Administrativos' | 'Egresados';
 }
 
 interface MenuItem {
@@ -22,35 +23,30 @@ const Index: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [activeMenu, setActiveMenu] = useState<string>('Profesores');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [menuTop, setMenuTop] = useState<number>(0);
 
   const personas: Persona[] = [
-    { id: 1, nombre: 'John Doe', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/john.jpg' },
-    { id: 2, nombre: 'Jane Smith', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jane.jpg' },
-    { id: 3, nombre: 'Angel Mata', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/angel.jpg' },
-    { id: 4, nombre: 'Alejandro Herrera', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/alejandro.jpg' },
-    { id: 5, nombre: 'Jose Perez', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jose.jpg' },
-    { id: 6, nombre: 'Antonio Midas', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/antonio.jpg' },
-    { id: 7, nombre: 'Gabriel Cumare', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/gabriel.jpg' },
-    { id: 8, nombre: 'Ricardo Santana', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/ricardo.jpg' },
+    { id: 1, nombre: 'John Doe', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/john.jpg', categoria: 'Profesores' },
+    { id: 2, nombre: 'Jane Smith', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jane.jpg', categoria: 'Egresados' },
+    { id: 3, nombre: 'Angel Mata', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/angel.jpg', categoria: 'Egresados' },
+    { id: 4, nombre: 'Alejandro Herrera', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/alejandro.jpg', categoria: 'Administrativos' },
+    { id: 5, nombre: 'Jose Perez', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jose.jpg', categoria: 'Administrativos' },
+    { id: 6, nombre: 'Antonio Midas', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/antonio.jpg', categoria: 'Administrativos' },
+    { id: 7, nombre: 'Gabriel Cumare', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/gabriel.jpg', categoria: 'Administrativos' },
+    { id: 8, nombre: 'Ricardo Santana', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/ricardo.jpg', categoria: 'Administrativos' },
   ];
 
   const menuItems: MenuItem[] = [
     { label: 'Profesores', href: '#' },
+    { label: 'Administrativos', href: '#' },
     { label: 'Egresados', href: '#' },
-    { label: 'Administrativo', href: '#' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const personasSection = document.getElementById('personas');
-      if (personasSection) {
-        const rect = personasSection.getBoundingClientRect();
-        if (rect.top <= 100) {
-          setActiveMenu('Profesores');
-        } else {
-          setActiveMenu('Egresados');
-        }
-      }
+      const headerHeight = 100; // Adjust based on your header height
+      const scrollY = window.scrollY;
+      setMenuTop(Math.max(0, scrollY > headerHeight ? scrollY - headerHeight : 0));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -59,10 +55,11 @@ const Index: React.FC = () => {
 
   const getFilteredAndSortedPersonas = (): Persona[] => {
     return personas
+      .filter(p => p.categoria === activeMenu)
       .filter(p => p.nombre.toLowerCase().includes(searchTerm.toLowerCase()))
       .sort((a, b) => sortOrder === 'asc'
         ? a.nombre.localeCompare(b.nombre)
-        : b.nombre.localeCompare(a.nombre));
+        : b.nombre.localeCompare(b.nombre));
   };
 
   const filteredPersonas = getFilteredAndSortedPersonas();
@@ -76,11 +73,22 @@ const Index: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row">
         {/* Botón de hamburguesa para pantallas pequeñas */}
-        <button className="lg:hidden p-4 bg-gray-800 text-white fixed top-4 left-4 z-50 rounded-md" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button 
+          className="lg:hidden p-4 bg-gray-800 text-white fixed top-4 left-4 z-50 rounded-md" 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          ☰
         </button>
 
         {/* SideMenu en el lateral izquierdo */}
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} lg:block w-64 flex-shrink-0 bg-transparent text-black p-4 lg:relative lg:h-auto z-40`}>
+        <div 
+          className={`
+            ${isMenuOpen ? 'block' : 'hidden'} 
+            lg:block w-64 flex-shrink-0 bg-transparent text-black p-4 
+            lg:sticky lg:top-0 z-40
+          `}
+          style={{ top: `${menuTop}px` }}
+        >
           <SideMenu
             menuItems={menuItems}
             activeMenu={activeMenu}
@@ -95,22 +103,22 @@ const Index: React.FC = () => {
         <div className="flex-grow lg:pl-8 px-4">
           {/* Sección de Búsqueda y Ordenamiento */}
           <div className='flex flex-row items-center justify-between mb-5 space-x-4'>
-          {/* Título dinámico */}
-          <h1 className='font-extrabold text-2xl lg:text-3xl'>{activeMenu}</h1>
-          
-          {/* Contenedor de SearchBar y SortButton */}
-          <div className="flex flex-col items-end space-y-4 ">
-            <SearchBar
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              className="w-64 md:w-[900px] border border-black rounded-none"
-            />
-          <div className="flex items-center space-x-2">
-            <span className="font-semibold flex items-center mb-4">Organizar</span>
-            <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
+            {/* Título dinámico */}
+            <h1 className='font-extrabold text-2xl lg:text-3xl'>{activeMenu}</h1>
+            
+            {/* Contenedor de SearchBar y SortButton */}
+            <div className="flex flex-col items-end space-y-4">
+              <SearchBar
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                className="w-64 md:w-[900px] border border-black rounded-none"
+              />
+              <div className="flex items-center space-x-2">
+                <span className="font-semibold flex items-center mb-4">Organizar</span>
+                <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
 
           {/* Sección de Personas */}
           <div id="personas" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-14">

@@ -65,7 +65,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-10 lg:py-20">
+     <>
       {/* Título principal */}
       <div className='min-h-96 bg-gray-300 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
         <h1>Noticias y Eventos</h1>
@@ -146,7 +146,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </>
   );
 };
 

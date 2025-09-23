@@ -36,17 +36,23 @@ const Index = () => {
   useEffect(() => {  
     const fetchData = async () => {  
       try {  
-        const noticiasResponse = await axios.get('/noticias');  
+        // 3. Petición GET al endpoint /noticias del backend (que está en el puerto 3000).
+        const noticiasResponse = await axios.get('http://localhost:3000/noticias');
+        // Cuando los datos llegan, se actualiza el estado 'noticias'.
         setNoticias(noticiasResponse.data);  
 
-        const eventosResponse = await axios.get('/eventos');  
+        // 4. Petición GET al endpoint /eventos del backend.
+        const eventosResponse = await axios.get('http://localhost:3000/eventos');  
+        // Se actualiza el estado 'eventos'.
         setEventos(eventosResponse.data);  
+        
       } catch (error) {  
+        // Si hay un error de red (ej. el backend no está corriendo), se mostrará en la consola.
         console.error('Error al obtener datos desde el backend:', error);  
       }  
     };  
 
-    fetchData();  
+    fetchData(); // Se llama a la función para que se ejecute.
   }, []); 
 
   return (
@@ -78,69 +84,57 @@ const Index = () => {
         </div>  
       </div>  
     </div>
-    
-      {/* Segunda sección */}  
-      <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>  
-        <div className='flex space-x-80'>  
-          <h1 className='font-extrabold text-3xl'>Últimas noticias</h1>  
-          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más noticias<span className='ml-4'>→</span></a>  
-        </div>  
-        <div className='grid grid-cols-1 mt-10 px-5 h-auto'>  
-          {noticias.length > 0 ? (  
-            noticias.map((noticia, index) => (  
-              <Card  
-                key={index}  
-                image="https://example.com/image1.jpg" // Cambia esto si tienes imágenes.  
-                title={noticia.title}  
-                date={noticia.date}  
-                content={noticia.content}  
-              />  
-            ))  
-          ) : (  
-            <p>No hay noticias disponibles.</p>  
-          )}  
-        </div>  
 
-        {/* Sección de noticias (3 mínimo) */}  
-        <div className='mt-2 md:mt-2 bg-white'>  
-          {noticias.slice(0, 3).map((noticia, index) => (  
-            <Newscard  
-              key={index}  
-              title={noticia.title}  
-              date={noticia.date}  
-              content={noticia.content}  
-              link="/"  
-            />  
-          ))}  
-          <div className='border-t border-gray-950 w-[700px] md:w-[900px] mx-auto my-4'></div>  
-        </div>  
-
-        {/* Próximos eventos */}  
-        <div className='flex space-x-80 mt-20 mb-10'>  
-          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>  
-          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>  
-        </div>  
-        <div className="flex justify-center">  
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">  
-            {eventos.length > 0 ? (  
-              eventos.map((evento, index) => (  
-                <div className="flex justify-center" key={index}>  
-                  <MiniCard  
-                    title={evento.title}  
-                    date={evento.date}  
-                    day={evento.day}  
-                    month={evento.month}  
-                    hour={evento.hour}  
-                    content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."  
-                  />  
-                </div>  
-              ))  
-            ) : (  
-              <p>No hay eventos disponibles.</p>  
-            )}  
-          </div>  
-        </div>  
+  {/* Segunda sección */}
+    <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>
+      <div className='flex space-x-80'>
+          <h1 className='font-extrabold text-3xl'>Últimas noticias</h1>
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más noticias<span className='ml-4'>→</span></a>
       </div>
+
+      {/* Noticias */}
+      <div className='grid grid-cols-1 gap-10 mt-10 px-5 w-full max-w-5xl'>
+          {noticias.length > 0 ? (
+              noticias.slice(0, 3).map((noticia) => (
+                  <Card
+                      key={noticia.id}
+                      image={noticia.image}
+                      title={noticia.title}
+                      date={noticia.date}
+                      content={noticia.content}
+                  />
+              ))
+          ) : (
+              <p>No hay noticias disponibles.</p>
+          )}
+      </div>
+
+      {/* Próximos eventos */}
+      <div className='flex space-x-80 mt-20 mb-10'>
+          <h1 className='font-extrabold text-3xl'>Próximos eventos</h1>
+          <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>
+      </div>
+      <div className="flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">
+              {eventos.length > 0 ? (
+                  eventos.map((evento, index) => (
+                      <div className="flex justify-center" key={index}>
+                          <MiniCard
+                              title={evento.title}
+                              date={evento.date}
+                              day={evento.day}
+                              month={evento.month}
+                              hour={evento.hour}
+                              content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+                          />
+                      </div>
+                  ))
+              ) : (
+                  <p>No hay eventos disponibles.</p>
+              )}
+          </div>
+      </div>
+    </div>
 
       {/* Tercera seccion */}
       <div className='flex flex-col md:flex-row justify-center items-center min-h-96 bg-gray-50 w-full text-center text-black'>  

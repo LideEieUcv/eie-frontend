@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';  
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface NavLink {  
   href: string;  
@@ -59,10 +60,12 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">  
         <div className="flex items-center justify-between h-16">  
         <a href="/" className="flex items-center bg-transparent px-3 py-1 rounded-md">  
-          <img 
-            src="/ruta/a/tu/imagen/logo.png" // Reemplaza con la ruta correcta de tu imagen
-            alt="Logo de la Escuela"
-            className="h-14 w-auto" // Ajusta el tamaño según necesites
+          <Image
+            src="/Logo-EIE.svg"
+            alt="Logo de la Escuela de Ingeniería Eléctrica"
+            width={150}
+            height={56}
+            className="h-14 w-auto"
           />
         </a>  
           <div className="md:hidden">  

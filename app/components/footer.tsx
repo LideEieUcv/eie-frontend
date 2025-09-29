@@ -18,7 +18,7 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/
 
     const Footer: React.FC<FooterProps> = ({}) => {
     return (
-        <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white flex flex-col justify-center items-center absolute bottom-0 w-full h-min">
+        <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white w-full py-8 px-4 mt-auto">
             <div className='container mx-auto flex-row md:flex-row justify-between px-4 hidden md:block'>
                 <div className="flex flex-row justify-between gap-x-14">
                     <div className="flex flex-col items-start">

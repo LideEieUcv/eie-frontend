@@ -6,7 +6,7 @@ interface CardProps {
     day: string;  
     month: string;  
     hour: string;  
-    content: string;  
+    content?: string;  
 }  
 
 const MiniCard: React.FC<CardProps> = ({ title, date, day, month, hour, content }) => {  

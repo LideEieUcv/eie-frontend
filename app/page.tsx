@@ -25,7 +25,7 @@ interface Evento {
   day: string;
   month: string;
   hour: string;
-  description?: string;
+  content?: string;
 }
 
 const Index = () => {
@@ -120,7 +120,7 @@ const Index = () => {
                               day={evento.day}
                               month={evento.month}
                               hour={evento.hour}
-                              content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
+                              content={evento.content ?? 'No hay nada que mostrar'}
                           />
                       </div>
                   ))

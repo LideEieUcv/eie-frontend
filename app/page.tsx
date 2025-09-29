@@ -35,24 +35,19 @@ const Index = () => {
 
   useEffect(() => {  
     const fetchData = async () => {  
-      try {  
-        // 3. Petición GET al endpoint /noticias del backend (que está en el puerto 3000).
+      try {
         const noticiasResponse = await axios.get('http://localhost:3000/noticias');
-        // Cuando los datos llegan, se actualiza el estado 'noticias'.
         setNoticias(noticiasResponse.data);  
 
-        // 4. Petición GET al endpoint /eventos del backend.
         const eventosResponse = await axios.get('http://localhost:3000/eventos');  
-        // Se actualiza el estado 'eventos'.
         setEventos(eventosResponse.data);  
         
-      } catch (error) {  
-        // Si hay un error de red (ej. el backend no está corriendo), se mostrará en la consola.
+      } catch (error) {
         console.error('Error al obtener datos desde el backend:', error);  
       }  
     };  
 
-    fetchData(); // Se llama a la función para que se ejecute.
+    fetchData();
   }, []); 
 
   return (

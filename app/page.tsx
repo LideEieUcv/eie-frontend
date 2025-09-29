@@ -53,31 +53,60 @@ const Index = () => {
   return (
     <>
     {/*Primera seccion*/}
+    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600">
+      
+      {/* Capa de la Imagen de Fondo */}
+      <div className="absolute top-0 left-0 w-full h-full z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+      </div>
 
-    <div className="flex flex-col py-5 w-full px-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white">  
-      <h1 className="text-5xl font-bold text-center mt-16">ESCUELA DE INGENIERIA ELECTRICA UCV</h1>  
-      <h2 className="my-5 font-medium text-center text-xl">  
-        Bienvenido a la Escuela de Ingeniería Eléctrica de la Facultad de Ingeniería.  
-        Como parte de la <br /> política e integración de la información UCV, estamos realizando  
-        la migración de nuestro <br /> sitio web al nuevo Portal.  
-      </h2>  
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 mt-6">  
-        <div className="flex justify-center">  
-          <a href="/" className="block"> 
-            <Box image={''} title={'Pregrado'} />  
-          </a>  
-        </div>  
-        <div className="flex justify-center">  
-          <a href="/" className="block"> 
-            <Box image={''} title={'Pregrado'} />  
-          </a>  
-        </div>  
-        <div className="flex justify-center">  
-          <a href="/" className="block"> 
-            <Box image={''} title={'Pregrado'} />  
-          </a>  
-        </div>  
-      </div>  
+      {/* Contenido de Texto */}
+      <div className="relative z-10 text-white max-w-4xl mx-auto">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
+          Escuela de Ingeniería Eléctrica
+        </h1>
+        <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 font-light">
+          Formando a la próxima generación de líderes e innovadores en ingeniería de la Universidad Central de Venezuela.
+        </p>
+
+        {/* Tarjetas de Acceso Rápido */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Pregrado */}
+          <a href="/informacion-academica#pregrado" className="block group">
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+              <h3 className="text-xl font-semibold mb-2">Pregrado</h3>
+              <p className="text-gray-300 text-sm mb-4">Descubre nuestros programas de estudio, pensum y requisitos.</p>
+              <span className="font-semibold text-white group-hover:underline">
+                Ver más →
+              </span>
+            </div>
+          </a>
+
+          {/* Postgrado */}
+          <a href="/informacion-academica#postgrado" className="block group">
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+              <h3 className="text-xl font-semibold mb-2">Postgrado</h3>
+              <p className="text-gray-300 text-sm mb-4">Avanza en tu carrera con nuestras maestrías y especializaciones.</p>
+              <span className="font-semibold text-white group-hover:underline">
+                Ver más →
+              </span>
+            </div>
+          </a>
+          
+          {/* Investigación */}
+          <a href="/investigacion" className="block group">
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+              <h3 className="text-xl font-semibold mb-2">Investigación</h3>
+              <p className="text-gray-300 text-sm mb-4">Conoce nuestras líneas de investigación y proyectos innovadores.</p>
+              <span className="font-semibold text-white group-hover:underline">
+                Ver más →
+              </span>
+            </div>
+          </a>
+          
+        </div>
+      </div>
     </div>
 
   {/* Segunda sección */}
@@ -110,7 +139,7 @@ const Index = () => {
           <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más eventos<span className='ml-4'>→</span></a>
       </div>
       <div className="flex justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-0">
               {eventos.length > 0 ? (
                   eventos.map((evento, index) => (
                       <div className="flex justify-center" key={index}>

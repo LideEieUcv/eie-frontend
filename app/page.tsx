@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-//import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion'; 
 import Box from '@/app/components/mainaccess';
 import Calendar from '@/app/components/upcomingevents'
 import Card from '@/app/components/card';
@@ -48,7 +48,20 @@ const Index = () => {
     };  
 
     fetchData();
-  }, []); 
+  }, []);
+
+function createExcerpt(html: string, length: number = 150): string {
+  // 1. Elimina las etiquetas HTML usando una expresión regular.
+  const text = html.replace(/<[^>]*>?/gm, '');
+
+  // 2. Acorta el texto si es más largo que la longitud deseada.
+  if (text.length <= length) {
+    return text;
+  }
+
+  // 3. Corta el texto y añade '...'
+  return text.substring(0, length).trim() + '...';
+}
 
   return (
     <>
@@ -74,19 +87,9 @@ const Index = () => {
 
           {/* Pregrado */}
           <a href="/informacion-academica#pregrado" className="block group">
-            {/* 
-              1. Añade `h-full` para que esta tarjeta intente ocupar toda la altura del grid row.
-              2. Añade `flex` y `flex-col` para convertirla en un contenedor flex vertical.
-            */}
             <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
               {/* El título no necesita cambios */}
               <h3 className="text-xl font-semibold mb-2">Pregrado</h3>
-
-              {/* 
-                3. Añade `flex-grow`. Esta es la clase clave.
-                Le dice al párrafo que ocupe todo el espacio vertical disponible,
-                empujando el "Ver más →" hacia abajo.
-              */}
               <p className="flex-grow text-gray-300 text-sm mb-4">
                 Descubre nuestros programas de estudio, pensum y requisitos.
               </p>
@@ -141,10 +144,11 @@ const Index = () => {
               noticias.slice(0, 3).map((noticia) => (
                   <Card
                       key={noticia.id}
+                      id={noticia.id} 
                       image={noticia.image}
                       title={noticia.title}
                       date={noticia.date}
-                      content={noticia.content}
+                      content={createExcerpt(noticia.content)}
                   />
               ))
           ) : (

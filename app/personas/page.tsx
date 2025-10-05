@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PersonaCard from '../components/personacard';
 import SideMenu from '../components/sidemenu';
 import SearchBar from '../components/searchbar';
 import SortButton from '../components/sortbutton';
 
+// --- INTERFACES ---
 interface Persona {
   id: number;
   nombre: string;
@@ -18,22 +20,40 @@ interface MenuItem {
   href: string;
 }
 
+// --- VARIANTES DE ANIMACIÓN ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
+
+// --- COMPONENTE PRINCIPAL ---
 const Index: React.FC = () => {
+  // --- ESTADOS ---
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [activeMenu, setActiveMenu] = useState<string>('Profesores');
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [menuTop, setMenuTop] = useState<number>(0);
-
+  
+  // Datos de ejemplo (se reemplazarán con la llamada a la API)
   const personas: Persona[] = [
-    { id: 1, nombre: 'John Doe', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/john.jpg', categoria: 'Profesores' },
-    { id: 2, nombre: 'Jane Smith', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jane.jpg', categoria: 'Egresados' },
-    { id: 3, nombre: 'Angel Mata', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/angel.jpg', categoria: 'Egresados' },
-    { id: 4, nombre: 'Alejandro Herrera', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/alejandro.jpg', categoria: 'Administrativos' },
-    { id: 5, nombre: 'Jose Perez', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/jose.jpg', categoria: 'Administrativos' },
-    { id: 6, nombre: 'Antonio Midas', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/antonio.jpg', categoria: 'Administrativos' },
-    { id: 7, nombre: 'Gabriel Cumare', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/gabriel.jpg', categoria: 'Administrativos' },
-    { id: 8, nombre: 'Ricardo Santana', descripcion: 'Lorem ipsum dolor sit amet consectetur.', imagen: 'https://example.com/ricardo.jpg', categoria: 'Administrativos' },
+    { id: 1, nombre: 'John Doe', descripcion: 'Profesor de Circuitos Eléctricos.', imagen: 'https://images.unsplash.com/photo-1580894742597-87bc8789db3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8MTB8fHRlYWNoZXJ8ZW58MHx8fHwxNzE1MDQxNzQ5&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 9, nombre: 'Ana Fernandez', descripcion: 'Especialista en Sistemas de Potencia.', imagen: 'https://images.unsplash.com/photo-1544717297-fa95b9ee9640?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8OHx8cHJvZmVzc29yYXxlbnwwfHx8fDE3MTUwNDIxNDQ&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 2, nombre: 'Jane Smith', descripcion: 'Ingeniera egresada, especialista en IA.', imagen: 'https://images.unsplash.com/photo-1542596594-649ed6e6b342?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8Nnx8ZW5naW5lZXJ8ZW58MHx8fHwxNzE1MDQyMDc4&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 3, nombre: 'Angel Mata', descripcion: 'Egresado, fundador de startup tecnológica.', imagen: 'https://images.unsplash.com/photo-1557862921-37829c790f19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8MTF8fG1hbnxlbnwwfHx8fDE3MTUwNDE3ODg&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 4, nombre: 'Alejandro Herrera', descripcion: 'Coordinador Administrativo.', imagen: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8Mnx8bWFufGVufDB8fHx8MTcxNTA0MTc4OA&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Administrativos' },
+    { id: 5, nombre: 'Jose Perez', descripcion: 'Asistente de laboratorio.', imagen: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8M3x8bWVufGVufDB8fHx8MTcxNTA0MTc4OA&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 6, nombre: 'Antonio Midas', descripcion: 'Secretario Académico.', imagen: 'https://images.unsplash.com/photo-1615109398623-88346a601842?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8N3x8bWVufGVufDB8fHx8MTcxNTA0MTc4OA&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 7, nombre: 'Gabriel Cumare', descripcion: 'Soporte Técnico.', imagen: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8OHx8bWVufGVufDB8fHx8MTcxNTA0MTc4OA&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
+    { id: 8, nombre: 'Ricardo Santana', descripcion: 'Jefe de Departamento.', imagen: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNTI5fDB8MXxzZWFyY2h8OXx8bWVufGVufDB8fHx8MTcxNTA0MTc4OA&ixlib=rb-4.0.3&q=80&w=400', categoria: 'Profesores' },
   ];
 
   const menuItems: MenuItem[] = [
@@ -42,121 +62,111 @@ const Index: React.FC = () => {
     { label: 'Egresados', href: '#' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const headerHeight = 100; // Adjust based on your header height
-      const scrollY = window.scrollY;
-      setMenuTop(Math.max(0, scrollY > headerHeight ? scrollY - headerHeight : 0));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  // --- LÓGICA DE FILTRADO Y ORDENAMIENTO (CLIENT-SIDE) ---
   const getFilteredAndSortedPersonas = (): Persona[] => {
     return personas
       .filter(p => p.categoria === activeMenu)
       .filter(p => p.nombre.toLowerCase().includes(searchTerm.toLowerCase()))
-      .sort((a, b) => sortOrder === 'asc'
-        ? a.nombre.localeCompare(b.nombre)
-        : b.nombre.localeCompare(b.nombre));
+      .sort((a, b) => {
+        if (sortOrder === 'asc') {
+          return a.nombre.localeCompare(b.nombre);
+        } else {
+          return b.nombre.localeCompare(a.nombre);
+        }
+      });
   };
 
   const filteredPersonas = getFilteredAndSortedPersonas();
-
+  
   return (
     <>
-      {/* Título principal */}
-      <div className='min-h-96 bg-gray-300 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
-        <h1>PERSONAS</h1>
-      </div>
+    <div className="bg-white">
+      {/* 1. Cabecera estilo MIT */}
+      <header className="bg-gradient-to-r from-blue-500 to-purple-600 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1 
+            className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            Personas
+          </motion.h1>
+          <motion.p 
+            className="mt-4 max-w-2xl mx-auto text-2xl text-black"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Conoce al equipo de profesores, personal administrativo y egresados destacados que conforman nuestra comunidad.
+          </motion.p>
+        </div>
+      </header>
 
-      <div className="flex flex-col lg:flex-row">
-        {/* Contenedor de las tarjetas y búsqueda */}
-        <div className="flex-grow lg:pl-8 px-4 relative">
-          {/* Fondo difuminado con desenfoque para móviles cuando el menú está abierto */}
-          {isMenuOpen && (
-            <div
-              className="lg:hidden fixed inset-0 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-md z-30"
-              onClick={() => setIsMenuOpen(false)}
-            />
-          )}
-
-          {/* Sección de Búsqueda y Ordenamiento */}
-          <div className='flex flex-col sm:flex-row items-center justify-between mb-5 space-y-4 sm:space-y-0 sm:space-x-4'>
-            {/* Título dinámico */}
-            <h1 className='font-extrabold text-2xl lg:text-3xl'>{activeMenu}</h1>
-            
-            {/* Contenedor de SearchBar y SortButton */}
-            <div className="flex flex-col items-end space-y-4">
-              <SearchBar
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                className="w-full sm:w-64 max-w-full border border-black rounded-none"
+      {/* 2. Cuerpo Principal */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col lg:flex-row lg:space-x-12">
+          
+          {/* Menú Lateral */}
+          <aside className="lg:w-1/4 mb-12 lg:mb-0">
+            <div className="sticky top-24">
+              <SideMenu
+                title="Categorías"
+                menuItems={menuItems}
+                activeMenu={activeMenu}
+                onItemClick={(label: string) => setActiveMenu(label)}
               />
-              <div className="flex items-center space-x-2">
-                <span className="font-semibold flex items-center">Organizar</span>
+            </div>
+          </aside>
+          
+          {/* Contenido Principal */}
+          <main className="lg:w-3/4">
+            
+            {/* Encabezado con Filtros */}
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-200 gap-4">
+              <h2 className="text-3xl font-bold text-gray-900 whitespace-nowrap">{activeMenu}</h2>
+              <div className="flex items-center gap-4 w-full md:w-auto">
+                <SearchBar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  className="w-full md:w-auto"
+                />
                 <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
               </div>
             </div>
-          </div>
 
-          {/* Botón de menú centrado debajo del subtítulo */}
-          <button 
-            className="lg:hidden p-5 bg-gray-800 bg-opacity-80 text-white absolute top-16 sm:top-20 left-1/2 -translate-x-1/2 z-50 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? '✕' : '☰'}
-          </button>
-
-          {/* SideMenu centrado horizontalmente debajo del botón en móviles */}
-          {isMenuOpen && (
-            <div 
-              className="lg:hidden w-11/12 sm:w-80 bg-white bg-opacity-90 text-black p-6 absolute top-32 sm:top-40 left-1/2 -translate-x-1/2 z-40 rounded-lg shadow-xl flex flex-col items-center transition-transform duration-300"
+            {/* Grid de Personas Animado */}
+            <motion.div 
+              key={activeMenu}
+              id="personas" 
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <SideMenu
-                menuItems={menuItems}
-                activeMenu={activeMenu}
-                onItemClick={(label: string) => {
-                  setActiveMenu(label);
-                  setIsMenuOpen(false); // Cerrar el menú al hacer clic
-                }}
-              />
-              {/* Nota: En el componente SideMenu, considera estilizar los MenuItem así:
-                  className="w-full py-2 px-4 text-center text-lg font-medium text-gray-800 hover:bg-gray-200 hover:text-black rounded-md transition-colors duration-200"
-              */}
-            </div>
-          )}
-
-          {/* SideMenu en escritorio (lateral) */}
-          <div 
-            className="hidden lg:block w-64 flex-shrink-0 bg-transparent text-black p-4 lg:sticky lg:top-0 z-40"
-            style={{ top: `${menuTop}px` }}
-          >
-            <SideMenu
-              menuItems={menuItems}
-              activeMenu={activeMenu}
-              onItemClick={(label: string) => {
-                setActiveMenu(label);
-                setIsMenuOpen(false);
-              }}
-            />
-          </div>
-
-          {/* Sección de Personas */}
-          <div id="personas" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-14 mt-28 sm:mt-32">
-            {filteredPersonas.map((persona: Persona) => (
-              <PersonaCard
-                key={persona.id}
-                nombre={persona.nombre}
-                descripcion={persona.descripcion}
-                imagen={persona.imagen}
-              />
-            ))}
-          </div>
+              {filteredPersonas.length > 0 ? (
+                filteredPersonas.map((persona: Persona) => (
+                  <motion.div key={persona.id} variants={itemVariants}>
+                    <PersonaCard
+                      nombre={persona.nombre}
+                      descripcion={persona.descripcion}
+                      imagen={persona.imagen}
+                    />
+                  </motion.div>
+                ))
+              ) : (
+                <div className="col-span-full text-center text-gray-500 py-16">
+                  <h3 className="text-xl font-semibold">Sin resultados</h3>
+                  <p className="mt-2">No se encontraron personas que coincidan con tu búsqueda en esta categoría.</p>
+                </div>
+              )}
+            </motion.div>
+            
+          </main>
         </div>
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

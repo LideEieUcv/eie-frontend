@@ -65,88 +65,98 @@ const App: React.FC = () => {
   }, []);
 
   return (
-     <>
-      {/* Título principal */}
-      <div className='min-h-96 bg-gradient-to-r from-blue-500 to-purple-600 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
-        <h1>Noticias y Eventos</h1>
-      </div>
-
-      <div className="flex flex-col lg:flex-row">
-        {/* SideMenu en el lateral izquierdo (oculto en pantallas pequeñas) */}
-        <div className="hidden lg:block w-64 flex-shrink-0 sticky top-20 self-start">
-          <SideMenu title="Noticias y eventos" menuItems={menuItems} activeMenu={activeMenu} />
+    <>
+    <div className="bg-white"> {/* Contenedor principal de la página */}
+      
+      {/* 1. Cabecera Mejorada */}
+      <header className="bg-gray-800 text-white relative">
+        {/* Puedes añadir una imagen de fondo sutil aquí si lo deseas */}
+        {/* <img src="/path/to/image.jpg" className="absolute w-full h-full object-cover opacity-20" /> */}
+        <div className="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Noticias y Eventos
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+            Mantente al día con las últimas novedades y acontecimientos de nuestra escuela.
+          </p>
         </div>
+      </header>
 
-        {/* Contenedor de las tarjetas y eventos */}
-        <div className="flex-grow lg:pl-8 px-4">
-          {/* Sección de Noticias */}
-          <div id="noticias" className="flex flex-col lg:flex-row lg:space-x-5 mb-5 justify-center gap-x-96 items-center">
-            <h1 className="font-extrabold text-2xl lg:text-3xl mb-4 lg:mb-0">Últimas noticias</h1>
-            <a href="/noticias-y-eventos" className="font-bold text-md text-black hover:text-gray-500 transition">
-              Más noticias<span className="ml-4">→</span>
-            </a>
-          </div>
-          <div className="grid grid-cols-1 gap-5">
-            {cardsData.map((card, index) => (
-              <Card
-                key={index}
-                image={card.image}
-                title={card.title}
-                date={card.date}
-                content={card.content}
+      {/* 2. Cuerpo Principal con Layout Mejorado */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col lg:flex-row lg:space-x-12">
+          
+          {/* 3. Menú Lateral (SideMenu) en una Columna `<aside>` */}
+          <aside className="lg:w-1/4 mb-12 lg:mb-0">
+            {/* El 'sticky top-24' lo fija en su lugar al hacer scroll */}
+            <div className="sticky top-24">
+              <SideMenu
+                title="Secciones" // Un título más genérico
+                menuItems={menuItems}
+                activeMenu={activeMenu}
               />
-            ))}
-          </div>
+            </div>
+          </aside>
+          
+          {/* 4. Contenido Principal en una Columna `<main>` */}
+          <main className="lg:w-3/4">
 
-          {/* Sección de Próximos Eventos */}
-          <div id="proximos-eventos" className="mt-10 lg:mt-20">
-            <div className="flex flex-col lg:flex-row lg:space-x-80 mb-5 justify-center items-center">
-              <h1 className="font-extrabold text-2xl lg:text-3xl mb-4 lg:mb-0">Próximos eventos</h1>
-              <a
-                href="/noticias-y-eventos"
-                className="font-bold text-md text-black hover:text-gray-500 transition"
-              >
-                Más eventos<span className="ml-4">→</span>
-              </a>
-            </div>
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full lg:w-2/3 max-w-7xl p-4">
-                <div className="flex justify-center">
-                  <MiniCard
-                    title="Defensa de tesis"
-                    date={5}
-                    day="Martes"
-                    month="Diciembre"
-                    hour="2:00 pm"
-                    content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <MiniCard
-                    title="Defensa de tesis"
-                    date={5}
-                    day="Martes"
-                    month="Diciembre"
-                    hour="2:00 pm"
-                    content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <MiniCard
-                    title="Defensa de tesis"
-                    date={5}
-                    day="Martes"
-                    month="Diciembre"
-                    hour="2:00 pm"
-                    content="Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada."
-                  />
-                </div>
+            {/* --- Sección de Noticias --- */}
+            <section id="noticias" className="mb-24">
+              {/* 5. Encabezado de Sección Moderno */}
+              <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
+                <h2 className="text-3xl font-bold text-gray-900">Últimas Noticias</h2>
+                <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                  Ver archivo →
+                </a>
               </div>
-            </div>
-          </div>
+
+              {/* Grid de Noticias con más espaciado */}
+              <div className="grid grid-cols-1 gap-12">
+                {cardsData.map((card, index) => (
+                  <Card
+                    key={index}
+                    image={card.image}
+                    title={card.title}
+                    date={card.date}
+                    content={card.content}
+                  />
+                ))}
+              </div>
+            </section>
+
+            {/* --- Sección de Próximos Eventos --- */}
+            <section id="proximos-eventos">
+               {/* Encabezado de Sección con el mismo estilo */}
+              <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
+                <h2 className="text-3xl font-bold text-gray-900">Próximos Eventos</h2>
+                <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                  Ver calendario completo →
+                </a>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Asumiendo 3 eventos de ejemplo */}
+                {[...Array(3)].map((_, index) => (
+                  <div key={index}>
+                    <MiniCard
+                      title="Defensa de tesis"
+                      date={5}
+                      day="Martes"
+                      month="Diciembre"
+                      hour="2:00 pm"
+                      content="Este es el contenido del artículo 1..."
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+
+          </main>
         </div>
       </div>
-      </>
+    </div>
+    </>
   );
 };
 

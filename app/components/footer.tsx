@@ -1,106 +1,100 @@
+// En app/components/footer.tsx
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import Image from 'next/image'; // Importa el componente Image
+import Link from 'next/link';   // Importa el componente Link
 
-    interface FacebookIconProps {}
+const Footer: React.FC = () => {
+  const socialLinks = [
+    { href: "#", icon: faFacebookF },
+    { href: "#", icon: faLinkedinIn },
+    { href: "#", icon: faTwitter },
+  ];
 
-    const FacebookIcon: React.FC<FacebookIconProps> = () => {
-    return (
-        <svg className="w-6 h-6 fill-current text-blue-600" viewBox="0 0 24 24">
-        <path d="M9 19l-7-7 3-3 4 4 7-7z" />
-        </svg>
-    );
-    };
+  const mainLinks = [
+    { href: "/informacion-academica", label: "Pregrado" },
+    { href: "/informacion-academica", label: "Postgrado" },
+    { href: "/contacto", label: "Contacto" },
+  ];
+  
+  const resourceLinks = [
+    { href: "/noticias-y-eventos", label: "Noticias" },
+    { href: "/investigacion", label: "Investigación" },
+    { href: "/personas", label: "Personas" },
+  ];
 
-    interface FooterProps {
-        //anadir cualquier componente extra aqui al footer
-    }
+  return (
+    <footer className="bg-gray-900 text-gray-400">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        
+        {/* Sección Principal del Footer */}
+        <div className="flex flex-col md:flex-row justify-between gap-12">
+          
+          {/* 1. Sección de Logo e Información */}
+          <div className="space-y-4 md:w-1/3">
+            <Link href="/" className="inline-block">
+              <Image 
+                src="/Logo-EIE.svg" // Asegúrate que esta es la ruta a tu logo
+                alt="Logo Escuela de Ingeniería Eléctrica"
+                width={200}
+                height={70}
+                className="h-14 w-auto"
+              />
+            </Link>
+            <p className="text-sm">
+              Formando líderes en ingeniería eléctrica. <br></br>Universidad Central de Venezuela.
+            </p>
+          </div>
 
-    const Footer: React.FC<FooterProps> = ({}) => {
-    return (
-        <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white w-full py-8 px-4 mt-auto">
-            <div className='container mx-auto flex-row md:flex-row justify-between px-4 hidden md:block'>
-                <div className="flex flex-row justify-between gap-x-14">
-                    <div className="flex flex-col items-start">
-                        <h3 className="text-sm font-bold">Departamento de ingeniería eléctrica UCV</h3>
-                        <p className="text-xs">Resumen de información relevante.</p>
-                    </div>
-                    <div className="flex flex-col md:flex-col gap-2">
-                        <a href="#" className="text-xs hover:text-gray-300">Pregrado</a>
-                        <a href="#" className="text-xs hover:text-gray-300">Posgrado</a>
-                        <a href="#" className="text-xs hover:text-gray-300">Contacto</a>
-                    </div>
-                    <div className="flex flex-row gap-x-5">
-                        <a href="#" className="text-blue-400 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faFacebookF} className="w-6 h-6" />
-                        </a>
-                        <a href="#" className="text-blue-400 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faLinkedinIn} className="w-6 h-6" />
-                        </a>
-                        <a href="#" className="text-blue-400 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faTwitter} className="w-6 h-6" />
-                        </a>
-                    </div>
-                </div>
+          {/* 2. Sección de Enlaces */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-8 md:w-1/2">
+              <div className="space-y-4">
+                  <h3 className="text-sm font-semibold text-gray-200 tracking-wider uppercase">Academia</h3>
+                  <ul className="space-y-2">
+                      {mainLinks.map(link => (
+                          <li key={link.label}>
+                              <Link href={link.href} className="text-sm hover:text-white transition-colors">{link.label}</Link>
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+              <div className="space-y-4">
+                  <h3 className="text-sm font-semibold text-gray-200 tracking-wider uppercase">Recursos</h3>
+                  <ul className="space-y-2">
+                      {resourceLinks.map(link => (
+                          <li key={link.label}>
+                              <Link href={link.href} className="text-sm hover:text-white transition-colors">{link.label}</Link>
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+          </div>
 
-                {/* Seccion 2: Linea divisoria */}
-                <div className="border-t border-white w-full my-4"></div>
+        </div>
 
-                {/* Seccion 3: Logos */}
-                <div className=" flex flex-row gap-4 items-center justify-between w-full">
-                    <div className="flex flex-col items-center">
-                        <a href="/" className="flex items-center">
-                            <img
-                                src="ruta/a/tu/logo.png"
-                                alt="Logo UCV"
-                                className="h-10 w-auto"
-                            />
-                        </a>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <a href="/" className="flex items-center">
-                            <img
-                                src="ruta/a/tu/logo.png"
-                                alt="Logo UCV"
-                                className="h-10 w-auto"
-                            />
-                        </a>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <a href="/" className="flex items-center">
-                            <img
-                                src="ruta/a/tu/logo.png"
-                                alt="Logo UCV"
-                                className="h-10 w-auto"
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
+        {/* Línea divisoria */}
+        <div className="border-t border-gray-800 my-8"></div>
+        
+        {/* Sección Inferior: Copyright y Redes Sociales */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between">
+          <p className="text-sm mt-4 md:mt-0">
+            &copy; {new Date().getFullYear()} Escuela de Ing. Eléctrica, UCV. Todos los derechos reservados.
+          </p>
+          
+          <div className="flex space-x-6">
+            {socialLinks.map((link, index) => (
+              <a key={index} href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">{link.icon.iconName}</span>
+                <FontAwesomeIcon icon={link.icon} className="h-6 w-6" />
+              </a>
+            ))}
+          </div>
+        </div>
+        
+      </div>
+    </footer>
+  );
+};
 
-            <div className='container mx-auto flex-row block md:hidden'>
-                <div className="border-t border-white w-full my-4"></div>
-                <div className='flex flex-row justify-between'>
-                    <div className='flex flex-col py-4 gap-y-3 items-start text-center'>
-                        <a href="#" className="text-sm hover:text-gray-300">Pregrado</a>
-                        <a href="#" className="text-sm hover:text-gray-300">Posgrado</a>
-                        <a href="#" className="text-sm hover:text-gray-300">Contacto</a>
-                    </div>
-                    <div className='flex flex-row gap-x-14 items-center'>
-                        <a href="/" className="text-blue-600 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faFacebookF} className="w-9 h-9" />
-                        </a>
-                        <a href="#" className="text-blue-600 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faLinkedinIn} className="w-9 h-9" />
-                        </a>
-                        <a href="#" className="text-blue-600 hover:text-blue-800">
-                            <FontAwesomeIcon icon={faTwitter} className="w-9 h-9" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
-    };
-
-    export default Footer;
+export default Footer;

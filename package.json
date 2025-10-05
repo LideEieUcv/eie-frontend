@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001", 
+    "dev": "next dev -p 3001",
     "_comment": "Se puede borrar el -p 3001 para que tome el puerto por defecto (3000)",
     "build": "next build",
     "start": "next start",
@@ -23,6 +23,8 @@
     "react-lorem-ipsum": "^1.4.10"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

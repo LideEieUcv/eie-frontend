@@ -1,32 +1,29 @@
-import React from 'react';
+import React from 'react';  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';  
 
-interface CardProps {
-  title: string;
-  description: string;
-  items?: string[];
-  buttonText?: string; // Made optional to match Index.tsx usage
-  className?: string;  // Added to support className prop
-}
+interface InfoCardProps {  
+  title: string;   
+  description: string;   
+}  
 
-const Card: React.FC<CardProps> = ({ title, description, items, buttonText, className }) => (
-  <div className={`bg-white p-4 m-2 border-2 border-black ${className || ''}`}>
-    <h3 className="text-lg font-semibold">{title}</h3>
-    <p className="mt-2 text-gray-700">{description}</p>
-    {items && items.length > 0 && (
-      <ul className="list-disc list-inside mt-2 text-gray-600">
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    )}
-    {buttonText && (
-      <div className="flex justify-end">
-        <button className="mt-4 text-black font-semibold hover:text-gray-500 transition border-2 border-black p-1">
-          {buttonText}
-        </button>
+const InfoCard: React.FC<InfoCardProps> = ({ title, description }) => {  
+  return (  
+    // Contenedor principal con estilos mejorados
+    <div className="h-full bg-white border border-gray-200 rounded-lg p-6 flex items-start space-x-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      
+      {/* Icono a la izquierda */}
+      <div className="flex-shrink-0 text-blue-500 mt-1">
+        <FontAwesomeIcon icon={faLightbulb as any} size="xl" />  
+      </div>  
+      
+      {/* Contenedor para título y descripción */}
+      <div className="flex flex-col">  
+        <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+        <p className="text-gray-600 text-left mt-2">{description}</p>
       </div>
-    )}
-  </div>
-);
+    </div>
+  );  
+};  
 
-export default Card;
+export default InfoCard;

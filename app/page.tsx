@@ -71,34 +71,53 @@ const Index = () => {
 
         {/* Tarjetas de Acceso Rápido */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
+
           {/* Pregrado */}
           <a href="/informacion-academica#pregrado" className="block group">
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+            {/* 
+              1. Añade `h-full` para que esta tarjeta intente ocupar toda la altura del grid row.
+              2. Añade `flex` y `flex-col` para convertirla en un contenedor flex vertical.
+            */}
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+              {/* El título no necesita cambios */}
               <h3 className="text-xl font-semibold mb-2">Pregrado</h3>
-              <p className="text-gray-300 text-sm mb-4">Descubre nuestros programas de estudio, pensum y requisitos.</p>
+
+              {/* 
+                3. Añade `flex-grow`. Esta es la clase clave.
+                Le dice al párrafo que ocupe todo el espacio vertical disponible,
+                empujando el "Ver más →" hacia abajo.
+              */}
+              <p className="flex-grow text-gray-300 text-sm mb-4">
+                Descubre nuestros programas de estudio, pensum y requisitos.
+              </p>
+
+              {/* El enlace ahora se alinea naturalmente al final */}
               <span className="font-semibold text-white group-hover:underline">
                 Ver más →
               </span>
             </div>
           </a>
 
-          {/* Postgrado */}
+          {/* Postgrado (Aplicamos el mismo patrón) */}
           <a href="/informacion-academica#postgrado" className="block group">
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
               <h3 className="text-xl font-semibold mb-2">Postgrado</h3>
-              <p className="text-gray-300 text-sm mb-4">Avanza en tu carrera con nuestras maestrías y especializaciones.</p>
+              <p className="flex-grow text-gray-300 text-sm mb-4">
+                Avanza en tu carrera con nuestras maestrías y especializaciones.
+              </p>
               <span className="font-semibold text-white group-hover:underline">
                 Ver más →
               </span>
             </div>
           </a>
           
-          {/* Investigación */}
+          {/* Investigación (Aplicamos el mismo patrón) */}
           <a href="/investigacion" className="block group">
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
+            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
               <h3 className="text-xl font-semibold mb-2">Investigación</h3>
-              <p className="text-gray-300 text-sm mb-4">Conoce nuestras líneas de investigación y proyectos innovadores.</p>
+              <p className="flex-grow text-gray-300 text-sm mb-4">
+                Conoce nuestras líneas de investigación y proyectos innovadores.
+              </p>
               <span className="font-semibold text-white group-hover:underline">
                 Ver más →
               </span>

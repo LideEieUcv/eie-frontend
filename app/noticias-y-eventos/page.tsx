@@ -67,7 +67,7 @@ const App: React.FC = () => {
   return (
      <>
       {/* Título principal */}
-      <div className='min-h-96 bg-gray-300 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
+      <div className='min-h-96 bg-gradient-to-r from-blue-500 to-purple-600 flex flex-col items-center justify-center text-black text-3xl lg:text-4xl font-extrabold text-center px-4 mb-5'>
         <h1>Noticias y Eventos</h1>
       </div>
 

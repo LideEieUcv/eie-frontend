@@ -164,21 +164,25 @@ function createExcerpt(html: string, length: number = 150): string {
       <div className="flex justify-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-2/3 max-w-7xl p-0">
               {eventos.length > 0 ? (
-                  eventos.map((evento, index) => (
-                      <div className="flex justify-center" key={index}>
-                          <MiniCard
-                              title={evento.title}
-                              date={evento.date}
-                              day={evento.day}
-                              month={evento.month}
-                              hour={evento.hour}
-                              content={evento.content ?? 'No hay nada que mostrar'}
-                          />
-                      </div>
-                  ))
-              ) : (
-                  <p>No hay eventos disponibles.</p>
-              )}
+                  eventos.map((evento) => {
+                    console.log("Mapeando evento:", evento);
+                    return (
+                        <div className="flex justify-center" key={evento.id}>
+                        <MiniCard
+                            id={evento.id}
+                            title={evento.title}
+                            date={evento.date}
+                            day={evento.day}
+                            month={evento.month}
+                            hour={evento.hour}
+                            content={evento.content ?? 'No hay nada que mostrar'}
+                        />
+                    </div>
+                    );
+                })
+            ) : (
+                <p>No hay eventos disponibles.</p>
+            )}
           </div>
       </div>
     </div>

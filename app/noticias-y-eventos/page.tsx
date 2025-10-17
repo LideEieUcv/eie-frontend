@@ -1,14 +1,28 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { motion } from 'framer-motion';
 import Card from '@/app/components/card';
 import SideMenu from '../components/sidemenu';
 import MiniCard from '../components/minicard';
 
-interface CardData {
+// --- INTERFACES DE DATOS ---
+interface Noticia {
+  id: number;
   image: string;
   title: string;
   date: string;
   content: string;
+}
+
+interface Evento {
+  id: number;
+  title: string;
+  date: number;
+  day: string;
+  month: string;
+  hour: string;
+  content?: string;
 }
 
 interface MenuItem {
@@ -16,148 +30,130 @@ interface MenuItem {
   href: string;
 }
 
-const App: React.FC = () => {
-  const [activeMenu, setActiveMenu] = useState<string>('Noticias');
+// --- VARIANTES DE ANIMACIÓN ---
+const containerVariants = { /* ... */ }; // Puedes copiar tus variantes aquí
+const itemVariants = { /* ... */ };     // o definirlas si no están.
 
-  const cardsData: CardData[] = [
-    {
-      image: 'https://example.com/image1.jpg',
-      title: 'Título del artículo 1',
-      date: '1 de enero de 2023',
-      content: 'Este es el contenido del artículo 1. Aquí puedes agregar una descripción más detallada.',
-    },
-    {
-      image: 'https://example.com/image2.jpg',
-      title: 'Título del artículo 2',
-      date: '15 de febrero de 2023',
-      content: 'Este es el contenido del artículo 2. Aquí puedes agregar una descripción más detallada.',
-    },
-    {
-      image: 'https://example.com/image3.jpg',
-      title: 'Título del artículo 3',
-      date: '30 de marzo de 2023',
-      content: 'Este es el contenido del artículo 3. Aquí puedes agregar una descripción más detallada.',
-    },
-  ];
+const NoticiasEventosPage: React.FC = () => {
+  // --- ESTADOS ---
+  const [activeMenu, setActiveMenu] = useState<string>('Noticias');
+  const [noticias, setNoticias] = useState<Noticia[]>([]);
+  const [eventos, setEventos] = useState<Evento[]>([]);
 
   const menuItems: MenuItem[] = [
-    { label: 'Noticias', href: '/noticias-y-eventos#noticias' },
-    { label: 'Eventos', href: '/noticias-y-eventos#proximos-eventos' },
+    { label: 'Noticias', href: '#noticias' },
+    { label: 'Eventos', href: '#eventos' },
   ];
-
+  
+  // --- LÓGICA DE DATOS ---
   useEffect(() => {
-    const handleScroll = () => {
-      const eventosSection = document.getElementById('proximos-eventos');
-      if (eventosSection) {
-        const eventosRect = eventosSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        // Check if the bottom of the eventos section is within or above the viewport
-        if (eventosRect.bottom <= windowHeight) {
-          setActiveMenu('Eventos');
-        } else {
-          setActiveMenu('Noticias');
-        }
+    const fetchData = async () => {
+      try {
+        const [noticiasResponse, eventosResponse] = await Promise.all([
+          axios.get('http://localhost:3000/noticias'), // Llama al endpoint que trae TODO
+          axios.get('http://localhost:3000/eventos')  // Llama al endpoint que trae TODO
+        ]);
+        setNoticias(noticiasResponse.data);
+        setEventos(eventosResponse.data);
+      } catch (error) {
+        console.error("Error al obtener los archivos:", error);
       }
     };
+    fetchData();
+  }, []);
 
+  // --- LÓGICA DE SCROLL ---
+  useEffect(() => {
+    // Tu lógica `handleScroll` existente es perfecta, la mantenemos aquí.
+    const handleScroll = () => { /* ... */ };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <>
-    <div className="bg-white"> {/* Contenedor principal de la página */}
-      
-      {/* 1. Cabecera Mejorada */}
-      <header className="bg-gray-800 text-white relative">
-        {/* Puedes añadir una imagen de fondo sutil aquí si lo deseas */}
-        {/* <img src="/path/to/image.jpg" className="absolute w-full h-full object-cover opacity-20" /> */}
-        <div className="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Noticias y Eventos
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-            Mantente al día con las últimas novedades y acontecimientos de nuestra escuela.
-          </p>
+    <div className="bg-white">
+      {/* 1. Cabecera */}
+      <header className="bg-gray-800 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Archivo de Noticias y Eventos
+          </motion.h1>
+          <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-white">
+            Explora el historial completo de publicaciones y acontecimientos de nuestra escuela.
+          </motion.p>
         </div>
       </header>
 
-      {/* 2. Cuerpo Principal con Layout Mejorado */}
+      {/* 2. Cuerpo Principal */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row lg:space-x-12">
           
-          {/* 3. Menú Lateral (SideMenu) en una Columna `<aside>` */}
+          {/* 3. Menú Lateral */}
           <aside className="lg:w-1/4 mb-12 lg:mb-0">
-            {/* El 'sticky top-24' lo fija en su lugar al hacer scroll */}
             <div className="sticky top-24">
-              <SideMenu
-                title="Secciones" // Un título más genérico
-                menuItems={menuItems}
-                activeMenu={activeMenu}
-              />
+              <SideMenu title="Secciones" menuItems={menuItems} activeMenu={activeMenu} />
             </div>
           </aside>
           
-          {/* 4. Contenido Principal en una Columna `<main>` */}
+          {/* 4. Contenido Principal */}
           <main className="lg:w-3/4">
 
             {/* --- Sección de Noticias --- */}
             <section id="noticias" className="mb-24">
-              {/* 5. Encabezado de Sección Moderno */}
               <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
-                <h2 className="text-3xl font-bold text-gray-900">Últimas Noticias</h2>
-                <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
-                  Ver archivo →
-                </a>
+                <h2 className="text-3xl font-bold text-gray-900">Todas las Noticias</h2>
               </div>
-
-              {/* Grid de Noticias con más espaciado */}
               <div className="grid grid-cols-1 gap-12">
-                {cardsData.map((card, index) => (
-                  <Card
-                    key={index}
-                    image={card.image}
-                    title={card.title}
-                    date={card.date}
-                    content={card.content}
-                  />
-                ))}
+                {/* Ahora mapeamos los datos REALES */}
+                {noticias.length > 0 ? (
+                  noticias.map((noticia) => (
+                    <Card
+                      key={noticia.id}
+                      id={noticia.id} // <-- ¡IMPORTANTE para enlazar a la pág. de detalle!
+                      image={noticia.image}
+                      title={noticia.title}
+                      date={noticia.date}
+                      content={createExcerpt(noticia.content)} // <-- Reutiliza tu función `createExcerpt`
+                    />
+                  ))
+                ) : ( <p>Cargando noticias...</p> )}
               </div>
             </section>
 
             {/* --- Sección de Próximos Eventos --- */}
-            <section id="proximos-eventos">
-               {/* Encabezado de Sección con el mismo estilo */}
+            <section id="eventos">
               <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
-                <h2 className="text-3xl font-bold text-gray-900">Próximos Eventos</h2>
-                <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
-                  Ver calendario completo →
-                </a>
+                <h2 className="text-3xl font-bold text-gray-900">Todos los Eventos</h2>
               </div>
-              
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Asumiendo 3 eventos de ejemplo */}
-                {[...Array(3)].map((_, index) => (
-                  <div key={index}>
+                {eventos.length > 0 ? (
+                  eventos.map((evento) => (
                     <MiniCard
-                      title="Defensa de tesis"
-                      date={5}
-                      day="Martes"
-                      month="Diciembre"
-                      hour="2:00 pm"
-                      content="Este es el contenido del artículo 1..."
+                      key={evento.id}
+                      id={evento.id} // <-- ¡IMPORTANTE para enlazar a la pág. de detalle!
+                      title={evento.title}
+                      date={evento.date}
+                      day={evento.day}
+                      month={evento.month}
+                      hour={evento.hour}
+                      content={evento.content ?? 'No hay descripción'}
                     />
-                  </div>
-                ))}
+                  ))
+                ) : ( <p>Cargando eventos...</p> )}
               </div>
             </section>
-
           </main>
         </div>
       </div>
     </div>
-    </>
   );
 };
 
-export default App;
+// No olvides pegar tu función `createExcerpt` aquí si la necesitas
+function createExcerpt(html: string, length: number = 150): string {
+    const text = html.replace(/<[^>]*>?/gm, '');
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + '...';
+}
+
+export default NoticiasEventosPage;

@@ -109,7 +109,7 @@ const NoticiaDetailPage: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        <a href="/noticias-y-eventos" className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 mb-4">
+                        <a href="/noticias-y-eventos" className="inline-flex items-center text-md font-semibold text-blue-600 hover:text-blue-800 mb-4">
                             ← Volver a Noticias
                         </a>
                         

@@ -59,19 +59,19 @@ const Index = () => {
           >
             <motion.div variants={itemVariants}>
               <InfoCard
-                title="Laboratorio de Sistemas de Potencia"
+                title="Laboratorio de Máquinas Eléctricas"
                 description="Equipos para análisis de redes eléctricas, transformadores y sistemas de distribución."
               />
             </motion.div>
             <motion.div variants={itemVariants}>
               <InfoCard
-                title="Laboratorio de Control y Automatización"
+                title="Laboratorio de Control"
                 description="Plataformas para diseño de sistemas de control, PLC y robótica industrial."
               />
             </motion.div>
             <motion.div variants={itemVariants}>
               <InfoCard
-                title="Laboratorio de Telecomunicaciones"
+                title="Laboratorio de Comunicaciones"
                 description="Herramientas para experimentación en redes, señales y comunicaciones inalámbricas."
               />
             </motion.div>

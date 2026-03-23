@@ -16,7 +16,8 @@ const Navbar: React.FC = () => {
   const navLinks: NavLink[] = [  
     { href: '/', label: 'Inicio' }, // Es buena práctica añadir un link a 'Inicio'
     { href: '/noticias-y-eventos', label: 'Noticias y eventos' },  
-    { href: '/personas', label: 'Personas' },  
+    // { href: '/personas', label: 'Personas' },  
+    { href: '/laboratorios', label: 'Laboratorios' },
     { href: '/informacion-academica', label: 'Información Académica' },  
     { href: '/investigacion', label: 'Investigación' }, 
   ];  

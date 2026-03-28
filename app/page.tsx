@@ -75,11 +75,11 @@ function createExcerpt(html: string, length: number = 150): string {
 
       {/* Contenido de Texto */}
       <div className="relative z-10 text-white max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
-          Escuela de Ingeniería Eléctrica
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          En la UCV impulsamos las tecnologías que mueven el mundo
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 font-light">
-          Formando a la próxima generación de líderes e innovadores en ingeniería de la Universidad Central de Venezuela.
+          Excelencia científica, infraestructura académica integral y un profesorado de alto nivel para formar a los líderes que el sector eléctrico y tecnológico necesita.
         </p>
 
         {/* Tarjetas de Acceso Rápido */}

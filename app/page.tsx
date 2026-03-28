@@ -29,6 +29,7 @@ interface Evento {
 }
 
 const Index = () => {
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
 
   const [noticias, setNoticias] = useState<Noticia[]>([]);  
   const [eventos, setEventos] = useState<Evento[]>([]);  
@@ -36,10 +37,10 @@ const Index = () => {
   useEffect(() => {  
     const fetchData = async () => {  
       try {
-        const noticiasResponse = await axios.get('http://localhost:3000/noticias');
+        const noticiasResponse = await axios.get(`${backendUrl}/noticias`);
         setNoticias(noticiasResponse.data);  
 
-        const eventosResponse = await axios.get('http://localhost:3000/eventos');  
+        const eventosResponse = await axios.get(`${backendUrl}/eventos`);  
         setEventos(eventosResponse.data);  
         
       } catch (error) {

@@ -43,10 +43,6 @@ const Index: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [activeMenu, setActiveMenu] = useState<string>('Profesores');
   
-  // (Estados para la UI del menú móvil, se mantienen igual)
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [menuTop, setMenuTop] = useState<number>(0);
-
   // --- SE ELIMINA EL ARRAY DE DATOS DE EJEMPLO `personas` ---
   
   const menuItems: MenuItem[] = [
@@ -85,18 +81,6 @@ const Index: React.FC = () => {
 
   }, [activeMenu, searchTerm, sortOrder]);
 
-
-  // El 'useEffect' para el scroll del menú lateral se mantiene si lo necesitas.
-  useEffect(() => {
-    const handleScroll = () => {
-      const headerHeight = 100;
-      const scrollY = window.scrollY;
-      setMenuTop(Math.max(0, scrollY > headerHeight ? scrollY - headerHeight : 0));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>

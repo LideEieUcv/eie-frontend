@@ -1,15 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion'; 
-import Box from '@/app/components/mainaccess';
-import Calendar from '@/app/components/upcomingevents'
 import Card from '@/app/components/card';
-import Newscard from './components/newscard';
 import MiniCard from '@/app/components/minicard';
-import { loremIpsum } from 'react-lorem-ipsum';
 import axios from 'axios'; 
-
-// Interfaces actualizadas para coincidir con el backend
+import Image from 'next/image';
 interface Noticia {
   id: number;
   title: string;
@@ -29,12 +23,11 @@ interface Evento {
 }
 
 const Index = () => {
-  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
-
   const [noticias, setNoticias] = useState<Noticia[]>([]);  
   const [eventos, setEventos] = useState<Evento[]>([]);  
 
   useEffect(() => {  
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
     const fetchData = async () => {  
       try {
         const noticiasResponse = await axios.get(`${backendUrl}/noticias`);
@@ -146,7 +139,7 @@ function createExcerpt(html: string, length: number = 150): string {
                   <Card
                       key={noticia.id}
                       id={noticia.id} 
-                      image={noticia.image}
+                      image={noticia.imageUrl ?? 'https://via.placeholder.com/400x200?text=No+Image'}
                       title={noticia.title}
                       date={noticia.date}
                       content={createExcerpt(noticia.content)}
@@ -191,7 +184,7 @@ function createExcerpt(html: string, length: number = 150): string {
       {/* Tercera seccion */}
       <div className='flex flex-col md:flex-row justify-center items-center min-h-96 bg-gray-50 w-full text-center text-black'>  
         <div className='hidden md:flex justify-center order-first w-1/2 md:w-1/3'>  
-          <img src='images/ucv_pg.png' alt='CONVENIO' className='rounded-full'/>  
+          <Image src='/images/ucv_pg.png' alt='CONVENIO' width={200} height={200} className='rounded-full'/>  
         </div>   
 
         <div className='flex flex-col items-center space-y-8 w-full md:w-1/3'>  

@@ -30,10 +30,6 @@ interface MenuItem {
   href: string;
 }
 
-// --- VARIANTES DE ANIMACIÓN ---
-const containerVariants = { /* ... */ }; // Puedes copiar tus variantes aquí
-const itemVariants = { /* ... */ };     // o definirlas si no están.
-
 const NoticiasEventosPage: React.FC = () => {
   // --- ESTADOS ---
   const [activeMenu, setActiveMenu] = useState<string>('Noticias');
@@ -91,7 +87,12 @@ const NoticiasEventosPage: React.FC = () => {
           {/* 3. Menú Lateral */}
           <aside className="lg:w-1/4 mb-12 lg:mb-0">
             <div className="sticky top-24">
-              <SideMenu title="Secciones" menuItems={menuItems} activeMenu={activeMenu} />
+              <SideMenu
+                title="Secciones"
+                menuItems={menuItems}
+                activeMenu={activeMenu}
+                onItemClick={(label) => setActiveMenu(label)}
+              />
             </div>
           </aside>
           

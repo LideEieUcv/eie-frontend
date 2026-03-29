@@ -1,6 +1,5 @@
 "use client";  
 import React from 'react';  
-import Card from '../components/infocard';  
 
 const Index = () => {  
   return (  

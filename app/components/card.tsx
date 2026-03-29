@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CardProps {
   id: number;
@@ -15,8 +16,8 @@ const Card: React.FC<CardProps> = ({ id, image, title, date, content }) => {
     <div className="bg-white border-2 border-black flex mx-auto overflow-hidden w-full">
       
       {/* --- SECCIÓN DE LA IMAGEN (sin cambios) --- */}
-      <div className="w-1/3 flex-shrink-0">
-        <img src={image} alt={title} className="w-full h-full object-cover"/>
+      <div className="w-1/3 flex-shrink-0 relative">
+        <Image src={image} alt={title} fill className="object-cover"/>
       </div>
 
       {/* --- SECCIÓN DE TEXTO (con el cambio en el botón) --- */}

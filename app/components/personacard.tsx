@@ -1,5 +1,6 @@
 // En app/components/personacard.tsx
 import React from 'react';
+import Image from 'next/image';
 
 interface PersonaCardProps {
   nombre: string;
@@ -15,8 +16,8 @@ const PersonaCard: React.FC<PersonaCardProps> = ({ nombre, descripcion, imagen }
       {/* Sección de la Imagen */}
       <div className="flex-shrink-0"> {/* Evita que la imagen se encoja */}
         {/* Usamos aspect-ratio para mantener la proporción de la imagen */}
-        <div className="aspect-w-1 aspect-h-1">
-          <img src={imagen} alt={nombre} className="w-full h-full object-cover" />
+        <div className="aspect-w-1 aspect-h-1 relative">
+          <Image src={imagen} alt={nombre} fill className="object-cover" />
         </div>
       </div>
 

@@ -27,8 +27,12 @@ const EventoDetailPage: React.FC = () => {
                 try {
                     const response = await axios.get(`http://localhost:3000/eventos/${id}`);
                     setEvento(response.data);
-                } catch (err: any) {
-                    setError(err.response?.data?.message || 'Error al cargar el evento.');
+                } catch (err: unknown) {
+                    if (axios.isAxiosError(err)) {
+                        setError(err.response?.data?.message || 'Error al cargar el evento.');
+                    } else {
+                        setError('Error al cargar el evento.');
+                    }
                 } finally {
                     setIsLoading(false);
                 }

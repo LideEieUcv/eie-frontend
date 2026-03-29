@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 // --- INTERFAZ ---
 // Define la estructura de datos que esperamos del backend para una noticia.
@@ -34,8 +35,8 @@ const NoticiaDetailPage: React.FC = () => {
                 try {
                     const response = await axios.get(`http://localhost:3000/noticias/${id}`);
                     setNoticia(response.data);
-                } catch (err: any) { // Se especifica el tipo `any` para el error
-                    if (err.response && err.response.status === 404) {
+                } catch (err: unknown) {
+                    if (axios.isAxiosError(err) && err.response?.status === 404) {
                         setError('La noticia que buscas no existe.');
                     } else {
                         setError('Ocurrió un error al cargar la noticia.');
@@ -49,25 +50,6 @@ const NoticiaDetailPage: React.FC = () => {
             fetchNoticia();
         }
     }, [id]); // El efecto se vuelve a ejecutar si el ID cambia
-
-    // --- LÓGICA DE TRANSFORMACIÓN DEL CONTENIDO ---
-    // `useMemo` recalcula `formattedContent` solo si `noticia` cambia.
-    const formattedContent = useMemo(() => {
-        if (!noticia?.content) {
-            return ''; // Devuelve un string vacío si no hay contenido
-        }
-        
-        // 1. Divide el texto por dos o más saltos de línea para crear un array de párrafos.
-        const paragraphs = noticia.content.split(/\n\s*\n/);
-        
-        // 2. Envuelve cada párrafo en etiquetas <p> y los une en un solo string de HTML.
-        // `.trim()` elimina espacios en blanco inútiles al inicio/final de cada párrafo.
-        return paragraphs
-            .filter(p => p.trim() !== '') // Elimina párrafos vacíos
-            .map(p => `<p>${p.trim().replace(/\n/g, '<br />')}</p>`) // Reemplaza saltos de línea simples con <br />
-            .join('');
-
-    }, [noticia]); // La dependencia es 'noticia'
 
     // --- LÓGICA DE RENDERIZADO PARA CARGA Y ERRORES ---
     if (isLoading) {
@@ -130,11 +112,14 @@ const NoticiaDetailPage: React.FC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    <img 
-                        src={noticia.image} 
-                        alt={noticia.title} 
-                        className="w-full h-auto object-cover rounded-xl shadow-lg"
-                    />
+                    <div className="relative w-full h-64">
+                        <Image 
+                            src={noticia.image} 
+                            alt={noticia.title} 
+                            fill
+                            className="object-cover rounded-xl shadow-lg"
+                        />
+                    </div>
                 </motion.figure>
 
                 {/* 3. Contenido Principal del Artículo */}

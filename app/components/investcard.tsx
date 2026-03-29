@@ -1,5 +1,6 @@
 import React from 'react';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';  
 
 interface InfoCardProps {  
@@ -12,7 +13,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, description }) => {
     <div className="relative bg-white border-2 border-black p-4 m-2 w-full max-w-xs h-64 flex items-center">  
       {/* Icono a la izquierda */}  
       <div className="text-black mr-4">  
-        <FontAwesomeIcon icon={faLightbulb as any} size="xl" />  
+        <FontAwesomeIcon icon={faLightbulb as IconProp} size="xl" />  
       </div>  
       
       {/* Contenedor para título y descripción */}  

@@ -99,6 +99,7 @@ const Index = () => {
             {[...Array(3)].map((_, i) => (
               <motion.div variants={itemVariants} key={i}>
                 <MiniCard
+                  id={i + 1}
                   title="Defensa de tesis"
                   date={5} day="Martes" month="Diciembre" hour="2:00 pm"
                   content="Estudiante Juan Pérez presenta su trabajo sobre micro-redes eléctricas."

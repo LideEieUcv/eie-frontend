@@ -5,17 +5,17 @@ services:
       - "3001:3001"
     environment:
       - NEXT_PUBLIC_BACKEND_URL=http://backend:3000
-    # depends_on:
-    #   - backend
+    depends_on:
+      - backend
 
-  # backend:
-  #   image: node:18-alpine
-  #   working_dir: /app
-  #   restart: unless-stopped
-  #   # Ajusta esto a tu backend real (ruta, Dockerfile o imagen)
-  #   build:
-  #     context: ../eie-backend
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - NODE_ENV=development
+  backend:
+    image: node:18-alpine
+    working_dir: /app
+    restart: unless-stopped
+    # Ajusta esto a tu backend real (ruta, Dockerfile o imagen)
+    build:
+      context: ../eie-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development

@@ -26,7 +26,7 @@ const Index = () => {
   const [noticias, setNoticias] = useState<Noticia[]>([]);  
   const [eventos, setEventos] = useState<Evento[]>([]);  
 
-  useEffect(() => {  
+  useEffect(() => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
     const fetchData = async () => {  
       try {
@@ -139,7 +139,7 @@ function createExcerpt(html: string, length: number = 150): string {
                   <Card
                       key={noticia.id}
                       id={noticia.id} 
-                      image={noticia.imageUrl ?? 'https://via.placeholder.com/400x200?text=No+Image'}
+                      image={noticia.imageUrl ?? '/images/ucv_pg.png'}//'https://via.placeholder.com/400x200?text=No+Image'}
                       title={noticia.title}
                       date={noticia.date}
                       content={createExcerpt(noticia.content)}

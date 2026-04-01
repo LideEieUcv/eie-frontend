@@ -17,7 +17,7 @@ const MiniCard: React.FC<CardProps> = ({ id, title, date, day, month, hour, cont
             href={`/eventos/${id}`} 
             className="block h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
-            <div className="bg-white border-2 border-black w-full h-full flex flex-col overflow-hidden p-4">
+            <div className="bg-white border-r-2 border-[#1f366a] w-full h-full flex flex-col overflow-hidden p-4">
                 <div className="flex flex-col sm:flex-row sm:items-center p-3 w-full">
                     <div className="flex flex-col justify-center text-5xl font-bold w-full sm:w-1/3 mb-2 sm:mb-0">
                         <h1>{date}</h1>

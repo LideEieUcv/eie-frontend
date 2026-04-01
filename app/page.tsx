@@ -126,7 +126,8 @@ function createExcerpt(html: string, length: number = 150): string {
     </div>
 
   {/* Segunda sección */}
-    <div className='bg-white py-5 flex flex-col justify-center items-center w-full'>
+    {/* <div className='bg-white py-5 flex flex-col justify-center items-center w-full'> */}
+    <div className="py-5 flex flex-col justify-center items-center w-full bg-[linear-gradient(to_right,_white_0%,_white_30%,_yellow_30%,_yellow_100%)]">
       <div className='flex space-x-80'>
           <h1 className='font-extrabold text-3xl'>Últimas noticias</h1>
           <a href="/noticias-y-eventos" className='font-bold text-md text-black hover:text-gray-500 transition'>Más noticias<span className='ml-4'>→</span></a>

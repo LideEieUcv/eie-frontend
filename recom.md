@@ -142,3 +142,6 @@ Esta estrategia asume que el proyecto está en desarrollo y que tienes acceso al
 - **Próximos pasos**: Si necesitas detalles en un paso específico (e.g., código exacto para Docker), aclara para profundizar.
 
 Esta estrategia transforma el proyecto en uno más profesional y escalable. ¿Quieres enfocarte en algún paso en particular o tienes preguntas sobre el backend?
+
+
+### Estructura

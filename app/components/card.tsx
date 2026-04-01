@@ -13,11 +13,14 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ id, image, title, date, content }) => {
 
   return (
-    <div className="bg-white border-2 border-black flex mx-auto overflow-hidden w-full">
+    <div className="bg-transparent border-t-2 border-[#1f366a] flex mx-auto overflow-hidden w-full pt-2">
       
       {/* --- SECCIÓN DE LA IMAGEN (sin cambios) --- */}
-      <div className="w-1/3 flex-shrink-0 relative">
+      {/* <div className="w-1/3 flex-shrink-0 relative">
         <Image src={image} alt={title} fill className="object-cover"/>
+      </div> */}
+      <div className="w-1/3 flex-shrink-0 relative overflow-hidden h-48">
+        <Image src={image} alt={title} fill className="object-contain" />
       </div>
 
       {/* --- SECCIÓN DE TEXTO (con el cambio en el botón) --- */}

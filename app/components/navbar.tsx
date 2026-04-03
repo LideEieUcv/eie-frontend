@@ -75,7 +75,8 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">  
             <Link href="/" className="flex items-center rounded-md">
                 <Image
-                    src="/Logo-EIE.svg"
+                    // src="/Logo-EIE.svg"
+                    src="/test4.svg"
                     alt="Logo de la Escuela de Ingeniería Eléctrica"
                     width={180}
                     height={60}

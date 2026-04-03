@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4 md:w-1/3">
             <Link href="/" className="inline-block">
               <Image 
-                src="/Logo-EIE.svg" // Asegúrate que esta es la ruta a tu logo
+                src="/logo-v.svg" // Asegúrate que esta es la ruta a tu logo
                 alt="Logo Escuela de Ingeniería Eléctrica"
                 width={200}
                 height={70}

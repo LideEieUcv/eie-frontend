@@ -70,13 +70,13 @@ const Navbar: React.FC = () => {
   };
 
   return (  
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${isScrolled || isOpen ? 'bg-gray-900 shadow-lg' : 'bg-transparent'}`}>  
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${isScrolled || isOpen ? 'bg-white shadow-lg' : 'bg-white'}`}>  
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">  
         <div className="flex items-center justify-between h-20">  
             <Link href="/" className="flex items-center rounded-md">
                 <Image
                     // src="/Logo-EIE.svg"
-                    src="/test4.svg"
+                    src="/test5.svg"
                     alt="Logo de la Escuela de Ingeniería Eléctrica"
                     width={180}
                     height={60}
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
             {/* Menú de escritorio */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-white text-base font-medium transition-colors hover:text-blue-300">
+                <Link key={link.href} href={link.href} className="text-black text-base font-medium transition-colors hover:text-blue-300">
                     {link.label}
                 </Link>
               ))}

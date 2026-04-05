@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
             {/* Menú de escritorio */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-black text-base font-medium transition-colors hover:text-blue-300">
+                <Link key={link.href} href={link.href} className="text-gray-900 text-base font-medium transition-colors hover:text-blue-300">
                     {link.label}
                 </Link>
               ))}
@@ -102,20 +102,20 @@ const Navbar: React.FC = () => {
               >
                   {/* Líneas de la hamburguesa que se transforman en 'X' */}
                   <motion.div
-                      className="absolute top-1/2 left-0 w-full h-0.5 bg-white"
+                      className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-900"
                       animate={{
                           y: isOpen ? 0 : -6,
                           rotate: isOpen ? 45 : 0,
                       }}
                   />
                   <motion.div
-                      className="absolute top-1/2 left-0 w-full h-0.5 bg-white"
+                      className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-900"
                       animate={{
                           opacity: isOpen ? 0 : 1,
                       }}
                   />
                   <motion.div
-                      className="absolute top-1/2 left-0 w-full h-0.5 bg-white"
+                      className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-900"
                       animate={{
                           y: isOpen ? 0 : 6,
                           rotate: isOpen ? -45 : 0,

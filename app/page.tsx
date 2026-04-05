@@ -76,13 +76,14 @@ function createExcerpt(html: string, length: number = 150): string {
   {/*Primera seccion*/}
     {/* <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600"> */}
     {/* <div className={`relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden ${gradient}`}> */}
-    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden animate-wave">
-      
+    {/* <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden animate-wave"> */}
+    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden background-gradient-electric">
       {/* Capa de la Imagen de Fondo */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
       </div>
 
+      <div>
       {/* Contenido de Texto */}
       <div className="relative z-10 text-white max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
@@ -91,7 +92,9 @@ function createExcerpt(html: string, length: number = 150): string {
         <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 font-light">
           Excelencia científica, infraestructura académica integral y un profesorado de alto nivel para formar a los líderes que el sector eléctrico y tecnológico necesita.
         </p>
+      </div>
 
+      <div className="relative z-10 text-white max-w-6xl mx-auto">
         {/* Tarjetas de Acceso Rápido */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -144,6 +147,7 @@ function createExcerpt(html: string, length: number = 150): string {
           
         </div>
       </div>
+    </div>
     </div>
 
   {/* Segunda sección */}

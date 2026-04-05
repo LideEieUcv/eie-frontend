@@ -25,6 +25,7 @@ interface Evento {
 const Index = () => {
   const [noticias, setNoticias] = useState<Noticia[]>([]);  
   const [eventos, setEventos] = useState<Evento[]>([]);  
+  // const [gradient, setGradient] = useState('bg-gradient-to-r from-blue-500 to-purple-600');
 
   useEffect(() => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
@@ -39,9 +40,22 @@ const Index = () => {
       } catch (error) {
         console.error('Error al obtener datos desde el backend:', error);  
       }  
-    };  
+    };
 
     fetchData();
+
+    // const colors = [
+    //   'bg-gradient-to-r from-blue-500 to-purple-600',
+    //   'bg-gradient-to-r from-green-500 to-orange-500',
+    //   'bg-gradient-to-r from-red-500 to-cyan-500',
+    //   'bg-gradient-to-r from-purple-500 to-pink-500',
+    // ];
+    // let index = 0;
+    // const interval = setInterval(() => {
+    //   index = (index + 1) % colors.length;
+    //   setGradient(colors[index]);
+    // }, 3000);
+    // return () => clearInterval(interval);
   }, []);
 
 function createExcerpt(html: string, length: number = 150): string {
@@ -60,7 +74,9 @@ function createExcerpt(html: string, length: number = 150): string {
   return (
     <>
   {/*Primera seccion*/}
-    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600">
+    {/* <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600"> */}
+    {/* <div className={`relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden ${gradient}`}> */}
+    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden animate-wave">
       
       {/* Capa de la Imagen de Fondo */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
@@ -81,43 +97,48 @@ function createExcerpt(html: string, length: number = 150): string {
 
           {/* Pregrado */}
           <a href="/informacion-academica#pregrado" className="block group">
-            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
-              {/* El título no necesita cambios */}
-              <h3 className="text-xl font-semibold mb-2">Pregrado</h3>
-              <p className="flex-grow text-gray-300 text-sm mb-4">
-                Descubre nuestros programas de estudio, pensum y requisitos.
-              </p>
-
-              {/* El enlace ahora se alinea naturalmente al final */}
-              <span className="font-semibold text-white group-hover:underline">
-                Ver más →
-              </span>
+            <div className="relative h-full flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[url('/electrica-edifico.jpg')] bg-cover bg-center bg-no-repeat transition-all duration-300 group-hover:scale-[1.01]">
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative z-10 flex flex-col p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white">Pregrado</h3>
+                <p className="flex-grow text-gray-100 text-sm mb-4">
+                  Descubre nuestros programas de estudio, pensum y requisitos.
+                </p>
+                <span className="font-semibold text-white group-hover:underline">
+                  Ver más →
+                </span>
+              </div>
             </div>
           </a>
-
           {/* Postgrado (Aplicamos el mismo patrón) */}
           <a href="/informacion-academica#postgrado" className="block group">
-            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
-              <h3 className="text-xl font-semibold mb-2">Postgrado</h3>
-              <p className="flex-grow text-gray-300 text-sm mb-4">
-                Avanza en tu carrera con nuestras maestrías y especializaciones.
-              </p>
-              <span className="font-semibold text-white group-hover:underline">
-                Ver más →
-              </span>
+            <div className="relative h-full flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[url('/torres-electricas.jpg')] bg-cover bg-center bg-no-repeat transition-all duration-300 group-hover:scale-[1.01]">
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative z-10 flex flex-col p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white">Postgrado</h3>
+                <p className="flex-grow text-gray-100 text-sm mb-4">
+                  Avanza en tu carrera con nuestras maestrías y especializaciones.
+                </p>
+                <span className="font-semibold text-white group-hover:underline">
+                  Ver más →
+                </span>
+              </div>
             </div>
           </a>
           
           {/* Investigación (Aplicamos el mismo patrón) */}
           <a href="/investigacion" className="block group">
-            <div className="h-full flex flex-col bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-1">
-              <h3 className="text-xl font-semibold mb-2">Investigación</h3>
-              <p className="flex-grow text-gray-300 text-sm mb-4">
-                Conoce nuestras líneas de investigación y proyectos innovadores.
-              </p>
-              <span className="font-semibold text-white group-hover:underline">
-                Ver más →
-              </span>
+            <div className="relative h-full flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[url('/coding-image.jfif')] bg-cover bg-center bg-no-repeat transition-all duration-300 group-hover:scale-[1.01]">
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative z-10 flex flex-col p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white">Investigación</h3>
+                <p className="flex-grow text-gray-100 text-sm mb-4">
+                  Conoce nuestras líneas de investigación y proyectos innovadores.
+                </p>
+                <span className="font-semibold text-white group-hover:underline">
+                  Ver más →
+                </span>
+              </div>
             </div>
           </a>
           

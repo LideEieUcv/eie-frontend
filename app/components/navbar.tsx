@@ -19,7 +19,8 @@ const Navbar: React.FC = () => {
     // { href: '/personas', label: 'Personas' },  
     { href: '/laboratorios', label: 'Laboratorios' },
     { href: '/informacion-academica', label: 'Información Académica' },  
-    { href: '/investigacion', label: 'Investigación' }, 
+    { href: '/investigacion', label: 'Investigación' },
+    { href: '/investigacion', label: 'Acerca de'}
   ];  
 
   useEffect(() => {
@@ -87,7 +88,7 @@ const Navbar: React.FC = () => {
             {/* Menú de escritorio */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-gray-900 text-base font-medium transition-colors hover:text-blue-300">
+                <Link key={link.href} href={link.href} className="text-gray-900 text-base font-bold transition-colors hover:text-blue-600">
                     {link.label}
                 </Link>
               ))}

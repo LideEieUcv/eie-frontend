@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between gap-12">
           
           {/* 1. Sección de Logo e Información */}
-          <div className="space-y-4 md:w-1/3">
+          <div className="flex flex-wrap items-center gap-4 md:w-1/3">
             <Link href="/" className="inline-block">
               <Image 
                 src="/logo-v.svg" // Asegúrate que esta es la ruta a tu logo
@@ -42,8 +42,26 @@ const Footer: React.FC = () => {
                 className="h-14 w-auto"
               />
             </Link>
+            <Link href="https://www.ing.ucv.ve/" className="inline-block">
+              <Image 
+                src="/logo_FIUCV_remasterizado.svg" // Asegúrate que esta es la ruta a tu logo
+                alt="Logo Facultad de Ingenieria"
+                width={220}
+                height={70}
+                className="h-14 w-auto"
+              />
+            </Link>
+            <Link href="http://www.ucv.ve/" className="inline-block">
+              <Image 
+                src="/ucv_logo.svg" // Asegúrate que esta es la ruta a tu logo
+                alt="Logo UCV"
+                width={200}
+                height={70}
+                className="h-14 w-auto"
+              />
+            </Link>
             <p className="text-sm">
-              Formando líderes en ingeniería eléctrica. <br></br>Universidad Central de Venezuela.
+              Ciudad Universitaria de Caracas<br></br>Los Chaguaramos, Caracas, Venezuela<br></br>Código Postal, 1050
             </p>
           </div>
 

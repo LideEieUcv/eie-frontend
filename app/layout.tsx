@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Electrica UCV",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen bg-gray-100`}>
+      <body className={`${roboto.className} flex flex-col min-h-screen bg-gray-100`}>
         <Navbar />
         <main className="flex-grow">
           {children}

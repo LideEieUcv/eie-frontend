@@ -69,14 +69,14 @@ const NoticiasEventosPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* 1. Cabecera */}
-      <header className="bg-gray-800 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
+      <header className="bg-[#1F366A] border-b border-gray-200">
+        <div className="max-w-7xl mx-auto pt-40 pb-24 px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Archivo de Noticias y Eventos
+            Noticias y Eventos
           </motion.h1>
-          <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-white">
+          {/* <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-white">
             Explora el historial completo de publicaciones y acontecimientos de nuestra escuela.
-          </motion.p>
+          </motion.p> */}
         </div>
       </header>
 

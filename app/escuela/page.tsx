@@ -38,7 +38,7 @@ const NoticiasEventosPage: React.FC = () => {
   const [eventos, setEventos] = useState<Evento[]>([]);
 
   const menuItems: MenuItem[] = [
-    { label: 'Historia', href: '#noticias' },
+    { label: 'Historia', href: '#historia' },
     { label: 'Visión', href: '#vision' },
     { label: 'Misión', href: '#mision' },
     { label: 'Departamentos', href: '#departamentos' },
@@ -102,12 +102,28 @@ const NoticiasEventosPage: React.FC = () => {
           {/* 4. Contenido Principal */}
           <main className="lg:w-3/4">
 
-            {/* --- Sección de Noticias --- */}
+            {/* --- Sección de Historia --- */}
             <section id="historia" className="mb-24">
               <InfoBlock 
                 title="Historia"
                 subtitle=""
                 content={`La Escuela de Ingeniería Eléctrica es una de las que conforman la Facultad de Ingeniería de la Universidad Central de Venezuela. Aunque la enseñanza de la Ingeniería Eléctrica comenzó en 1948 en la Universidad Central de Venezuela, la organización de los estudios dentro del marco académico de una Escuela se concretó sólo en 1962. Para esta fecha la única universidad que impartía estudios en esta especialidad era la Universidad Central de Venezuela. La creación de los estudios de Ingeniería Eléctrica en Venezuela, en 1948, se debió a las necesidades impuestas por el creciente desarrollo tecnológico y científico, a nivel mundial, como consecuencia de la Segunda Guerra Mundial. Entre los avances tecnológicos de esta época pueden citarse el radar, las microondas, el transistor, la computadora, la televisión y la electrónica en general. Para esta fecha el número de ingenieros electricistas en Venezuela no llegaba a la media decena, egresados todos de institutos universitarios del exterior.`}
+              />
+            </section>
+
+            <section id="vision" className="mb-24">
+              <InfoBlock 
+                title="Visión"
+                subtitle=""
+                content={`Ser referencia de excelencia académica en el ámbito nacional e internacional en la formación de profesionales en el área de la Ingeniería Eléctrica, en la prestación de servicios a terceros y en el aporte al conocimiento científico y tecnológico, con capacidad de adaptación para afrontar los retos del desarrollo nacional.`}
+              />
+            </section>
+
+            <section id="mision" className="mb-24">
+              <InfoBlock 
+                title="Misión"
+                subtitle=""
+                content={`Formar profesionales de alto nivel académico y con sensibilidad social capaces de participar en el desarrollo nacional, apoyar al sector de la Ingeniería Eléctrica y contribuir con la generación de nuevos conocimientos y desarrollos tecnológicos.`}
               />
             </section>
 

@@ -6,6 +6,7 @@ import Card from '@/app/components/card';
 import SideMenu from '../components/sidemenu';
 import MiniCard from '../components/minicard';
 import InfoBlock from '../components/infoblock';
+import Link from 'next/link'; // Importa el componente Link de Next.js
 
 // --- INTERFACES DE DATOS ---
 interface Noticia {
@@ -43,6 +44,12 @@ const NoticiasEventosPage: React.FC = () => {
     { label: 'Misión', href: '#mision' },
     { label: 'Departamentos', href: '#departamentos' },
   ];
+
+  const departamentos = [
+  { nombre: "Departamento de Comunicaciones", href: "/departamentos/comunicaciones" },
+  { nombre: "Departamento de Electrónica, Computación y Control", href: "/departamentos/electronica" },
+  { nombre: "Departamento de Potencia", href: "/departamentos/potencia" },
+];
   
   // --- LÓGICA DE DATOS ---
   useEffect(() => {
@@ -127,28 +134,30 @@ const NoticiasEventosPage: React.FC = () => {
               />
             </section>
 
-            {/* --- Sección de Próximos Eventos --- */}
-            <section id="eventos">
-              <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
-                <h2 className="text-3xl font-bold text-gray-900">Todos los Eventos</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {eventos.length > 0 ? (
-                  eventos.map((evento) => (
-                    <MiniCard
-                      key={evento.id}
-                      id={evento.id} // <-- ¡IMPORTANTE para enlazar a la pág. de detalle!
-                      title={evento.title}
-                      date={evento.date}
-                      day={evento.day}
-                      month={evento.month}
-                      hour={evento.hour}
-                      content={evento.content ?? 'No hay descripción'}
-                    />
-                  ))
-                ) : ( <p>Cargando eventos...</p> )}
-              </div>
+            <section id="departamentos" className="mb-24">
+              <InfoBlock 
+                title="Departamentos"
+                subtitle="Estructura Académica"
+                content={
+                  <div className="flex flex-col space-y-4">
+                    <p className="mb-2">La Escuela de Ingeniería Eléctrica se organiza en los siguientes departamentos:</p>
+                    <ul className="list-disc pl-5 space-y-3">
+                      {departamentos.map((dep, index) => (
+                        <li key={index} className="text-black">
+                          <Link 
+                            href={dep.href} 
+                            className="font-semibold text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                          >
+                            {dep.nombre}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                }
+              />
             </section>
+
           </main>
         </div>
       </div>

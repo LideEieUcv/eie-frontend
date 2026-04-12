@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Card from '@/app/components/card';
 import SideMenu from '../components/sidemenu';
 import MiniCard from '../components/minicard';
+import Image from 'next/image';
 
 // --- INTERFACES DE DATOS ---
 interface Noticia {
@@ -46,8 +47,8 @@ const NoticiasEventosPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const [noticiasResponse, eventosResponse] = await Promise.all([
-          axios.get('http://localhost:3000/noticias'), // Llama al endpoint que trae TODO
-          axios.get('http://localhost:3000/eventos')  // Llama al endpoint que trae TODO
+          axios.get('http://localhost:3000/noticias/reciente'), 
+          axios.get('http://localhost:3000/eventos/reciente')  // Llama al endpoint que trae TODO
         ]);
         setNoticias(noticiasResponse.data);
         setEventos(eventosResponse.data);
@@ -88,7 +89,7 @@ const NoticiasEventosPage: React.FC = () => {
           <aside className="lg:w-1/4 mb-12 lg:mb-0">
             <div className="sticky top-24">
               <SideMenu
-                title="Secciones"
+                title="Noticias y Eventos"
                 menuItems={menuItems}
                 activeMenu={activeMenu}
                 onItemClick={(label) => setActiveMenu(label)}
@@ -99,10 +100,23 @@ const NoticiasEventosPage: React.FC = () => {
           {/* 4. Contenido Principal */}
           <main className="lg:w-3/4">
 
+            <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 shadow-lg border border-gray-100">
+              <Image 
+                // src="https://images.unsplash.com/photo-1585860941685-337fb6ce8e0c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Ruta a tu imagen (p.ej. de Unsplash)
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Cabecera de la sección de Noticias de Ingeniería Eléctrica"
+                fill // Ocupa todo el contenedor padre
+                className="object-cover transition-transform duration-500 hover:scale-105" // Imagen tipo cover y efecto hover sutil
+                priority // Carga esta imagen con prioridad
+              />
+              {/* Superposición opcional para mejorar el contraste del título si fuera necesario */}
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+
             {/* --- Sección de Noticias --- */}
-            <section id="noticias" className="mb-24">
+            <section id="noticias" className="mb-24 scroll-mt-32">
               <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
-                <h2 className="text-3xl font-bold text-gray-900">Todas las Noticias</h2>
+                <h2 className="text-3xl font-bold text-gray-900">Noticias</h2>
               </div>
               <div className="grid grid-cols-1 gap-12">
                 {/* Ahora mapeamos los datos REALES */}
@@ -122,9 +136,9 @@ const NoticiasEventosPage: React.FC = () => {
             </section>
 
             {/* --- Sección de Próximos Eventos --- */}
-            <section id="eventos">
+            <section id="eventos" className='scroll-mt-32'>
               <div className="flex justify-between items-baseline mb-8 pb-3 border-b border-gray-200">
-                <h2 className="text-3xl font-bold text-gray-900">Todos los Eventos</h2>
+                <h2 className="text-3xl font-bold text-gray-900">Eventos</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {eventos.length > 0 ? (
@@ -140,7 +154,7 @@ const NoticiasEventosPage: React.FC = () => {
                       content={evento.content ?? 'No hay descripción'}
                     />
                   ))
-                ) : ( <p>Cargando eventos...</p> )}
+                ) : ( <p>No hay eventos programados para los próximos días.</p> )}
               </div>
             </section>
           </main>

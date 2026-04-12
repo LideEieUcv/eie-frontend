@@ -7,6 +7,7 @@ import SideMenu from '../components/sidemenu';
 import MiniCard from '../components/minicard';
 import InfoBlock from '../components/infoblock';
 import Link from 'next/link'; // Importa el componente Link de Next.js
+import Image from 'next/image';
 
 // --- INTERFACES DE DATOS ---
 interface Noticia {
@@ -109,8 +110,20 @@ const NoticiasEventosPage: React.FC = () => {
           {/* 4. Contenido Principal */}
           <main className="lg:w-3/4">
 
+            <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 shadow-lg border border-gray-100">
+              <Image 
+                src="/images/escuela-electrica.jpeg"
+                alt="Cabecera de la sección de Noticias de Ingeniería Eléctrica"
+                fill // Ocupa todo el contenedor padre
+                className="object-cover transition-transform duration-500 hover:scale-105" // Imagen tipo cover y efecto hover sutil
+                priority // Carga esta imagen con prioridad
+              />
+              {/* Superposición opcional para mejorar el contraste del título si fuera necesario */}
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+
             {/* --- Sección de Historia --- */}
-            <section id="historia" className="mb-24">
+            <section id="historia" className="mb-24 scroll-mt-32">
               <InfoBlock 
                 title="Historia"
                 subtitle=""
@@ -118,7 +131,7 @@ const NoticiasEventosPage: React.FC = () => {
               />
             </section>
 
-            <section id="vision" className="mb-24">
+            <section id="vision" className="mb-24 scroll-mt-32">
               <InfoBlock 
                 title="Visión"
                 subtitle=""
@@ -126,7 +139,7 @@ const NoticiasEventosPage: React.FC = () => {
               />
             </section>
 
-            <section id="mision" className="mb-24">
+            <section id="mision" className="mb-24 scroll-mt-32">
               <InfoBlock 
                 title="Misión"
                 subtitle=""
@@ -134,7 +147,7 @@ const NoticiasEventosPage: React.FC = () => {
               />
             </section>
 
-            <section id="departamentos" className="mb-24">
+            <section id="departamentos" className="mb-24 scroll-mt-32">
               <InfoBlock 
                 title="Departamentos"
                 subtitle="Estructura Académica"

@@ -47,10 +47,10 @@ const NoticiasEventosPage: React.FC = () => {
   ];
 
   const departamentos = [
-  { nombre: "Departamento de Comunicaciones", href: "/departamentos/comunicaciones" },
-  { nombre: "Departamento de Electrónica, Computación y Control", href: "/departamentos/electronica" },
-  { nombre: "Departamento de Potencia", href: "/departamentos/potencia" },
-];
+    { nombre: "Departamento de Comunicaciones", href: "/departamentos/comunicaciones" },
+    { nombre: "Departamento de Electrónica, Computación y Control", href: "/departamentos/electronica" },
+    { nombre: "Departamento de Potencia", href: "/departamentos/potencia" },
+  ];
   
   // --- LÓGICA DE DATOS ---
   useEffect(() => {
@@ -154,7 +154,7 @@ const NoticiasEventosPage: React.FC = () => {
                 content={
                   <div className="flex flex-col space-y-4">
                     <p className="mb-2">La Escuela de Ingeniería Eléctrica se organiza en los siguientes departamentos:</p>
-                    <ul className="list-disc pl-5 space-y-3">
+                    <ul className="list-none pl-0 space-y-3">
                       {departamentos.map((dep, index) => (
                         <li key={index} className="text-black">
                           <Link 

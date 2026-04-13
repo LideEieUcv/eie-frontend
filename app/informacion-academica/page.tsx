@@ -1,98 +1,231 @@
-"use client";  
-import React from 'react';  
+"use client";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import Card from '@/app/components/card';
+import SideMenu from '../components/sidemenu';
+import MiniCard from '../components/minicard';
+import Image from 'next/image';
+import InfoBlock from '../components/infoblock';
+import Link from 'next/link';
 
-const Index = () => {  
-  return (  
+// --- INTERFACES DE DATOS ---
+interface Noticia {
+  id: number;
+  image: string;
+  title: string;
+  date: string;
+  content: string;
+}
+
+interface Evento {
+  id: number;
+  title: string;
+  date: number;
+  day: string;
+  month: string;
+  hour: string;
+  content?: string;
+}
+
+interface MenuItem {
+  label: string;
+  href: string;
+}
+
+const informacionAcademicaPage: React.FC = () => {
+  // --- ESTADOS ---
+  const [activeMenu, setActiveMenu] = useState<string>('Noticias');
+  const [noticias, setNoticias] = useState<Noticia[]>([]);
+  const [eventos, setEventos] = useState<Evento[]>([]);
+
+  const menuItems = [
+    { 
+      label: 'Organización', 
+      href: '#organizacion',
+      subItems: [
+        { label: 'Departamento de Potencia', href: '#departamento-potencia' },
+        { label: 'Departamento de Comunicaciones', href: '#departamento-comunicaciones' },
+        { label: 'Departamento de Electrónica, Computación y Control', href: '#departamento-electronica' },
+      ]
+    },
+    { label: 'Horarios', href: '#horarios' },
+  ]
+
+  const departamentos = [
+    { nombre: "Departamento de Comunicaciones", 
+      href: "/departamentos/comunicaciones",
+      descripcion: "El Departamento de Comunicaciones se encarga de la investigación y enseñanza en el campo de las comunicaciones, incluyendo redes, telecomunicaciones y sistemas de comunicación inalámbrica.",
+      unidadesDocentes: [
+      { nombre: "UD Redes", href: "/materias/redes" },
+      { nombre: "UD Antenas", href: "/materias/antenas" },
+      { nombre: "UD Telecomunicaciones", href: "/materias/telecomunicaciones" }
+    ],
+    },
+    { nombre: "Departamento de Electrónica, Computación y Control", 
+      href: "/departamentos/electronica",
+      descripcion: "El Departamento de Electrónica, Computación y Control se enfoca en la electrónica, la informática y el control automático, abarcando áreas como sistemas embebidos, robótica y automatización.",
+      unidadesDocentes: [
+        { nombre: "UD Sistemas de Electrónica", href: "/materias/sistemas-electronica" },
+        { nombre: "UD Informática", href: "/materias/informatica" },
+        { nombre: "UD Control Automático", href: "/materias/control-automatico" }
+      ]
+    },
+    { nombre: "Departamento de Potencia", 
+      href: "/departamentos/potencia", 
+      descripcion: "El Departamento de Potencia se encarga de la investigación y enseñanza en el campo de la potencia, incluyendo sistemas de generación, transmisión y distribución de energía." ,
+      unidadesDocentes: [
+        { nombre: "UD Sistemas de Potencia", href: "/materias/sistemas-potencia" },
+        { nombre: "UD Electrónica de Potencia", href: "/materias/electronica-potencia" },
+        { nombre: "UD Generación", href: "/materias/generacion" }
+      ]
+    },
+  ];
+  
+  // --- LÓGICA DE DATOS ---
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [noticiasResponse, eventosResponse] = await Promise.all([
+          axios.get('http://localhost:3000/noticias/reciente'), 
+          axios.get('http://localhost:3000/eventos/reciente')  // Llama al endpoint que trae TODO
+        ]);
+        setNoticias(noticiasResponse.data);
+        setEventos(eventosResponse.data);
+      } catch (error) {
+        console.error("Error al obtener los archivos:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // --- LÓGICA DE SCROLL ---
+  useEffect(() => {
+    // Tu lógica `handleScroll` existente es perfecta, la mantenemos aquí.
+    const handleScroll = () => { /* ... */ };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
     <div className="bg-white">
-      {/* 1. Cabecera estilo MIT */}
-      <header className="bg-gray-800 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+      {/* 1. Cabecera */}
+      <header className="bg-[#1F366A] border-b border-gray-200">
+        <div className="max-w-7xl mx-auto pt-40 pb-24 px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
             Información Académica
-          </h1>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-white">
-            Explora nuestros programas de pregrado y postgrado, convenios institucionales y el proceso para nuevos ingresos.
-          </p>
+          </motion.h1>
+          {/* <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-white">
+            Explora el historial completo de publicaciones y acontecimientos de nuestra escuela.
+          </motion.p> */}
         </div>
       </header>
 
-      {/* 2. Cuerpo Principal con Contenido Centrado */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        
-        {/* --- Sección de Programas Principales (Pregrado y Postgrado) --- */}
-        <section className="mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">  
+      {/* 2. Cuerpo Principal */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col lg:flex-row lg:space-x-12">
+          
+          {/* 3. Menú Lateral */}
+          <aside className="lg:w-1/4 mb-12 lg:mb-0">
+            <div className="sticky top-24">
+              <SideMenu
+                title="Información Académica"
+                menuItems={menuItems}
+                activeMenu={activeMenu}
+                onItemClick={(label) => setActiveMenu(label)}
+              />
+            </div>
+          </aside>
+          
+          {/* 4. Contenido Principal */}
+          <main className="lg:w-3/4">
+
+            <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 shadow-lg border border-gray-100">
+              <Image 
+                // src="https://images.unsplash.com/photo-1585860941685-337fb6ce8e0c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Ruta a tu imagen (p.ej. de Unsplash)
+                src="https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Cabecera de la sección de Información Académica de Ingeniería Eléctrica"
+                fill // Ocupa todo el contenedor padre
+                className="object-cover transition-transform duration-500 hover:scale-105" // Imagen tipo cover y efecto hover sutil
+                priority // Carga esta imagen con prioridad
+              />
+              {/* Superposición opcional para mejorar el contraste del título si fuera necesario */}
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+
+            {/* --- Sección de Organización --- */}
+            <section id="organizacion" className="mb-24 scroll-mt-32">
+              <InfoBlock 
+                title="Organización"
+                subtitle="Estructura Académica"
+                content={
+                  <div className="flex flex-col space-y-4">
+                    <p className="mb-2">La Escuela de Ingeniería Eléctrica se organiza en los siguientes departamentos:</p>
+                    <ul className="list-none pl-0 space-y-3">
+                      {departamentos.map((dep, index) => (
+                        <li key={index} className="text-black">
+                          <Link 
+                            href={dep.href} 
+                            className="font-semibold text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                          >
+                            {dep.nombre}
+                          </Link>
+
+                          {/* Descripción */}
+                          <p className="text-gray-600 mt-2 text-base leading-relaxed">
+                            {dep.descripcion}
+                          </p>
+
+                          {/* Unidades docentes */}
+                          <div className="mt-6 ml-2 border-l-2 border-gray-100 pl-6">
+                            <span className="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-3">
+                              Unidades Docentes
+                            </span>
+                            <ul className="flex flex-col space-y-3">
+                              {dep.unidadesDocentes.map((ud, udIndex) => (
+                                <li key={udIndex}>
+                                  <Link 
+                                    href={ud.href}
+                                    className="group flex items-center text-blue-700 font-medium hover:text-blue-900 transition-all"
+                                  >
+                                    {/* Icono de flecha sutil que aparece al hacer hover */}
+                                    <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all mr-2">
+                                      →
+                                    </span>
+                                    {ud.nombre}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                }
+              />
+            </section>
             
-            {/* Card de Pregrado Mejorada */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Pregrado</h2>
-              <p className="text-gray-600 mb-6">
-                Conoce las bases de la ingeniería eléctrica con nuestro programa de cinco años, diseñado para formar profesionales integrales y altamente capacitados.
-              </p>
-              <ul className="space-y-3 mb-8 text-gray-700">
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Horarios de Clase</li>
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Pensum de Estudio</li>
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Proceso de Admisión</li>
-              </ul>
-              <a href="#" className="font-semibold text-blue-600 hover:text-blue-800">
-                Descubre más sobre Pregrado →
-              </a>
-            </div>
-
-            {/* Card de Postgrado Mejorada */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Postgrado</h2>
-              <p className="text-gray-600 mb-6">
-                Especializa tus conocimientos y avanza en tu carrera profesional con nuestras maestrías y programas de investigación avanzada.
-              </p>
-              <ul className="space-y-3 mb-8 text-gray-700">
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Maestrías y Especializaciones</li>
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Líneas de Investigación</li>
-                <li className="flex items-center"><span className="text-blue-500 mr-3">✔</span> Requisitos de Postulación</li>
-              </ul>
-              <a href="#" className="font-semibold text-blue-600 hover:text-blue-800">
-                Explora los Postgrados →
-              </a>
-            </div>
-
-          </div>
-        </section>
-
-        {/* --- Sección de Información Adicional (Convenios y Nuevos Ingresos) --- */}
-        <section>
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">Más Información</h2>
-                <p className="mt-3 text-lg text-gray-600">Enlaces y recursos importantes para nuestra comunidad académica.</p>
-            </div>
-            
-            <div className="border border-gray-200 rounded-lg overflow-hidden ">
-                {/* Item Convenios */}
-                <a href="#" className="block p-6 bg-white hover:bg-gray-50 transition-colors">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-900">Convenios Nacionales e Internacionales</h3>  
-                            <p className="mt-1 text-gray-600">Oportunidades de estudio y colaboración con otras prestigiosas instituciones.</p>
-                        </div>
-                        <span className="text-gray-400 ml-4">→</span>
-                    </div>
-                </a>
-                
-                {/* Item Nuevos Ingresos con borde divisor */}
-                <a href="#" className="block p-6 bg-white border-t border-gray-200 hover:bg-gray-50 transition-colors">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-900">Nuevos Ingresos</h3>  
-                            <p className="mt-1 text-gray-600">Toda la información que necesitas para iniciar tu carrera en nuestra escuela.</p>
-                        </div>
-                        <span className="text-gray-400 ml-4">→</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
+            {/* --- Sección de Horarios --- */}
+            <section id="horarios" className="mb-24 scroll-mt-32">
+              <InfoBlock
+                title="Horarios"
+                content="Aquí va la información sobre los horarios académicos."
+              />
+            </section>
+          </main>
+        </div>
       </div>
     </div>
-  );  
-};  
+  );
+};
 
-export default Index;
+// No olvides pegar tu función `createExcerpt` aquí si la necesitas
+function createExcerpt(html: string, length: number = 150): string {
+    const text = html.replace(/<[^>]*>?/gm, '');
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + '...';
+}
+
+export default informacionAcademicaPage;

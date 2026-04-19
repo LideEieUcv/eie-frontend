@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
     // { href: '/personas', label: 'Personas' },
     { href: '/informacion-academica', label: 'Información Académica' },  
     { href: '/laboratorios', label: 'Laboratorios' },
-    { href: '/investigacion', label: 'Investigación' },
+    // { href: '/investigacion', label: 'Investigación' },
     { href: '/escuela', label: 'Escuela'}
   ];  
 

@@ -8,6 +8,7 @@ import MiniCard from '../components/minicard';
 import Image from 'next/image';
 import InfoBlock from '../components/infoblock';
 import Link from 'next/link';
+import PlanEstudios from '../components/planEstudios';
 
 // --- INTERFACES DE DATOS ---
 interface Noticia {
@@ -205,6 +206,11 @@ const informacionAcademicaPage: React.FC = () => {
                   </div>
                 }
               />
+            </section>
+
+            {/* --- SECCIÓN 2: PLAN DE ESTUDIOS (La Tabla Dinámica) --- */}
+            <section id="plan-estudios">
+              <PlanEstudios />
             </section>
             
             {/* --- Sección de Horarios --- */}

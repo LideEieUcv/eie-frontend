@@ -9,7 +9,7 @@ interface Noticia {
   title: string;
   date: string;
   content: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 interface Evento {
@@ -31,10 +31,10 @@ const Index = () => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
     const fetchData = async () => {  
       try {
-        const noticiasResponse = await axios.get(`${backendUrl}/noticias`);
+        const noticiasResponse = await axios.get(`${backendUrl}/noticias/reciente`);
         setNoticias(noticiasResponse.data);  
 
-        const eventosResponse = await axios.get(`${backendUrl}/eventos`);  
+        const eventosResponse = await axios.get(`${backendUrl}/eventos/reciente`);  
         setEventos(eventosResponse.data);  
         
       } catch (error) {
@@ -169,7 +169,7 @@ function createExcerpt(html: string, length: number = 150): string {
                   <Card
                       key={noticia.id}
                       id={noticia.id} 
-                      image={noticia.imageUrl ?? '/images/ucv_pg.png'}//'https://via.placeholder.com/400x200?text=No+Image'}
+                      image={noticia.image ?? '/images/ucv_pg.png'}//'https://via.placeholder.com/400x200?text=No+Image'}
                       title={noticia.title}
                       date={noticia.date}
                       content={createExcerpt(noticia.content)}
@@ -211,7 +211,7 @@ function createExcerpt(html: string, length: number = 150): string {
                     );
                 })
             ) : (
-                <p>No hay eventos disponibles.</p>
+                <p>No hay eventos programados para los próximos días.</p>
             )}
           </div>
       </div>

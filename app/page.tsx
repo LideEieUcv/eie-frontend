@@ -77,15 +77,15 @@ function createExcerpt(html: string, length: number = 150): string {
     {/* <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600"> */}
     {/* <div className={`relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden ${gradient}`}> */}
     {/* <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden animate-wave"> */}
-    <div className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden background-gradient-electric">
+    <div className="relative w-full min-h-screen flex items-center justify-center text-center px-4 overflow-hidden background-gradient-electric pt-24 pb-12 md:pt-0 md:pb-0">
       {/* Capa de la Imagen de Fondo */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
       </div>
 
-      <div>
+      <div className="relative z-10 flex flex-col justify-center items-center w-full">
       {/* Contenido de Texto */}
-      <div className="relative z-10 text-white max-w-4xl mx-auto">
+      <div className="text-white max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
           En la UCV impulsamos las tecnologías que mueven el mundo
         </h1>
@@ -94,9 +94,9 @@ function createExcerpt(html: string, length: number = 150): string {
         </p>
       </div>
 
-      <div className="relative z-10 text-white max-w-6xl mx-auto">
+      <div className="text-white max-w-6xl mx-auto">
         {/* Tarjetas de Acceso Rápido */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
 
           {/* Pregrado */}
           <a href="/informacion-academica#pregrado" className="block group">
@@ -130,13 +130,13 @@ function createExcerpt(html: string, length: number = 150): string {
           </a>
           
           {/* Investigación (Aplicamos el mismo patrón) */}
-          <a href="/investigacion" className="block group">
+          <a href="/laboratorios" className="block group">
             <div className="relative h-full flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[url('/coding-image.jfif')] bg-cover bg-center bg-no-repeat transition-all duration-300 group-hover:scale-[1.01]">
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="relative z-10 flex flex-col p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">Investigación</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">Laboratorios</h3>
                 <p className="flex-grow text-gray-100 text-sm mb-4">
-                  Conoce nuestras líneas de investigación y proyectos innovadores.
+                  Conoce nuestros laboratorios y sus instalaciones modernas.
                 </p>
                 <span className="font-semibold text-white group-hover:underline">
                   Ver más →
@@ -218,7 +218,7 @@ function createExcerpt(html: string, length: number = 150): string {
     </div>
 
   {/* Cuarta seccion */}
-    <div className='flex flex-row justify-center items-center min-h-96 bg-gray-50 text-center text-black'>
+    {/* <div className='flex flex-row justify-center items-center min-h-96 bg-gray-50 text-center text-black'>
       <div className='flex-col items-start space-y-5 w-1/3 hidden md:block'>
         <h1 className='text-lg font-bold text-left ml-20'>Ciclo de inscripciones<br></br>2024-2025</h1>
         <p className='text-sm font-medium text-left ml-20'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, nihil similique. Aut sit fuga maiores voluptatibus iste suscipit corporis nesciunt tempore praesentium rerum facilis accusantium amet totam ullam, a commodi!</p>
@@ -242,7 +242,7 @@ function createExcerpt(html: string, length: number = 150): string {
           </a>  
         </div>  
       </div>   
-    </div>
+    </div> */}
     </>
   );
 };

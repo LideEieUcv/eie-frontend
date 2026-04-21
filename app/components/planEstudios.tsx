@@ -115,7 +115,7 @@ const PlanEstudios = () => {
   return (
     <section className="p-1">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        <h2 className="text-3xl font-bold text-[#1F366A]">Plan de Estudios</h2>
+        {/* <h2 className="text-3xl font-bold text-[#1F366A]">Plan de Estudios</h2> */}
         
         <div className="flex items-center gap-3">
           <label className="font-bold text-gray-700">Mención:</label>

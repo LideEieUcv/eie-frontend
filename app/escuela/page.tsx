@@ -8,6 +8,7 @@ import MiniCard from '../components/minicard';
 import InfoBlock from '../components/infoblock';
 import Link from 'next/link'; // Importa el componente Link de Next.js
 import Image from 'next/image';
+import { label } from 'framer-motion/client';
 
 // --- INTERFACES DE DATOS ---
 interface Noticia {
@@ -43,8 +44,16 @@ const NoticiasEventosPage: React.FC = () => {
     { label: 'Historia', href: '#historia' },
     { label: 'Visión', href: '#vision' },
     { label: 'Misión', href: '#mision' },
+    { label: 'Perfil del Egresado', href: '#perfil' },
     { label: 'Departamentos', href: '#departamentos' },
   ];
+
+  const contenido_escuela = [
+    { label: 'Historia', href: '#historia', id: 'historia', content: 'La Escuela de Ingeniería Eléctrica es una de las que conforman la Facultad de Ingeniería de la Universidad Central de Venezuela. Aunque la enseñanza de la Ingeniería Eléctrica comenzó en 1948 en la Universidad Central de Venezuela, la organización de los estudios dentro del marco académico de una Escuela se concretó sólo en 1962. Para esta fecha la única universidad que impartía estudios en esta especialidad era la Universidad Central de Venezuela. La creación de los estudios de Ingeniería Eléctrica en Venezuela, en 1948, se debió a las necesidades impuestas por el creciente desarrollo tecnológico y científico, a nivel mundial, como consecuencia de la Segunda Guerra Mundial. Entre los avances tecnológicos de esta época pueden citarse el radar, las microondas, el transistor, la computadora, la televisión y la electrónica en general. Para esta fecha el número de ingenieros electricistas en Venezuela no llegaba a la media decena, egresados todos de institutos universitarios del exterior.'  },
+    { label: 'Visión', href: '#vision', id: 'vision', content: 'Ser referencia de excelencia académica en el ámbito nacional e internacional en la formación de profesionales en el área de la Ingeniería Eléctrica, en la prestación de servicios a terceros y en el aporte al conocimiento científico y tecnológico, con capacidad de adaptación para afrontar los retos del desarrollo nacional.' },
+    { label: 'Misión', href: '#mision', id: 'mision', content: 'Formar profesionales de alto nivel académico y con sensibilidad social capaces de participar en el desarrollo nacional, apoyar al sector de la Ingeniería Eléctrica y contribuir con la generación de nuevos conocimientos y desarrollos tecnológicos.' },
+    { label: 'Perfil del Egresado', href: '#perfil', id: 'perfil', content: 'El Ingeniero Electricista egresado de la Universidad Central de Venezuela, en sus menciones Comunicación, Electrónica y Control, Potencia e Industrial, es un profesional formado para ejercer en el ámbito nacional e internacional con conocimientos de las ciencias básicas y sólida formación en tecnología, con los cuales integra a su profesión la capacidad de planificar, diseñar, instalar y operar sistemas eléctricos. Emplea conocimientos específicos y generales en diferentes áreas del saber para acercarse a proyectos transdisciplinarios con equipos de trabajo, utilizando comunicación asertiva, motivación, liderazgo y principios de gerencia. En su formación está presente la creatividad, innovación, determinación y el aprendizaje autónomo, para resolver problemas relacionados con la planeación, diseño, construcción, operación y control de sistemas y equipos eléctricos. Todo ello con la apreciación de los valores éticos y morales que le permitan contribuir con el desarrollo social y económico del país.' },
+  ]
 
   const departamentos = [
     { nombre: "Departamento de Comunicaciones", href: "/departamentos/comunicaciones" },
@@ -53,21 +62,7 @@ const NoticiasEventosPage: React.FC = () => {
   ];
   
   // --- LÓGICA DE DATOS ---
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [noticiasResponse, eventosResponse] = await Promise.all([
-          axios.get('http://localhost:3000/noticias'), // Llama al endpoint que trae TODO
-          axios.get('http://localhost:3000/eventos')  // Llama al endpoint que trae TODO
-        ]);
-        setNoticias(noticiasResponse.data);
-        setEventos(eventosResponse.data);
-      } catch (error) {
-        console.error("Error al obtener los archivos:", error);
-      }
-    };
-    fetchData();
-  }, []);
+
 
   // --- LÓGICA DE SCROLL ---
   useEffect(() => {
@@ -123,27 +118,38 @@ const NoticiasEventosPage: React.FC = () => {
             </div>
 
             {/* --- Sección de Historia --- */}
-            <section id="historia" className="mb-24 scroll-mt-32">
+            <section id= { contenido_escuela[0].id } className="mb-24 scroll-mt-32">
               <InfoBlock 
-                title="Historia"
+                title= { contenido_escuela[0].label }
                 subtitle=""
-                content={`La Escuela de Ingeniería Eléctrica es una de las que conforman la Facultad de Ingeniería de la Universidad Central de Venezuela. Aunque la enseñanza de la Ingeniería Eléctrica comenzó en 1948 en la Universidad Central de Venezuela, la organización de los estudios dentro del marco académico de una Escuela se concretó sólo en 1962. Para esta fecha la única universidad que impartía estudios en esta especialidad era la Universidad Central de Venezuela. La creación de los estudios de Ingeniería Eléctrica en Venezuela, en 1948, se debió a las necesidades impuestas por el creciente desarrollo tecnológico y científico, a nivel mundial, como consecuencia de la Segunda Guerra Mundial. Entre los avances tecnológicos de esta época pueden citarse el radar, las microondas, el transistor, la computadora, la televisión y la electrónica en general. Para esta fecha el número de ingenieros electricistas en Venezuela no llegaba a la media decena, egresados todos de institutos universitarios del exterior.`}
+                content={ contenido_escuela[0].content }
               />
             </section>
 
-            <section id="vision" className="mb-24 scroll-mt-32">
-              <InfoBlock 
-                title="Visión"
+            {/* --- Sección de Visión --- */}
+            <section id={ contenido_escuela[1].id } className="mb-24 scroll-mt-32">
+              <InfoBlock
+                title={ contenido_escuela[1].label }
                 subtitle=""
-                content={`Ser referencia de excelencia académica en el ámbito nacional e internacional en la formación de profesionales en el área de la Ingeniería Eléctrica, en la prestación de servicios a terceros y en el aporte al conocimiento científico y tecnológico, con capacidad de adaptación para afrontar los retos del desarrollo nacional.`}
+                content={ contenido_escuela[1].content }
               />
             </section>
 
-            <section id="mision" className="mb-24 scroll-mt-32">
+            {/* --- Sección de Misión --- */}
+            <section id={ contenido_escuela[2].id } className="mb-24 scroll-mt-32">
               <InfoBlock 
-                title="Misión"
+                title={ contenido_escuela[2].label }
                 subtitle=""
-                content={`Formar profesionales de alto nivel académico y con sensibilidad social capaces de participar en el desarrollo nacional, apoyar al sector de la Ingeniería Eléctrica y contribuir con la generación de nuevos conocimientos y desarrollos tecnológicos.`}
+                content={ contenido_escuela[2].content }
+              />
+            </section>
+
+            {/* --- Sección de Perfil del Egresado --- */}
+            <section id={ contenido_escuela[3].id } className="mb-24 scroll-mt-32">
+              <InfoBlock
+                title={ contenido_escuela[3].label }
+                subtitle=""
+                content={ contenido_escuela[3].content }
               />
             </section>
 

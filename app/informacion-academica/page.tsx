@@ -9,25 +9,9 @@ import Image from 'next/image';
 import InfoBlock from '../components/infoblock';
 import Link from 'next/link';
 import PlanEstudios from '../components/planEstudios';
+import { menu } from 'framer-motion/client';
 
 // --- INTERFACES DE DATOS ---
-interface Noticia {
-  id: number;
-  image: string;
-  title: string;
-  date: string;
-  content: string;
-}
-
-interface Evento {
-  id: number;
-  title: string;
-  date: number;
-  day: string;
-  month: string;
-  hour: string;
-  content?: string;
-}
 
 interface MenuItem {
   label: string;
@@ -36,21 +20,21 @@ interface MenuItem {
 
 const informacionAcademicaPage: React.FC = () => {
   // --- ESTADOS ---
-  const [activeMenu, setActiveMenu] = useState<string>('Noticias');
-  const [noticias, setNoticias] = useState<Noticia[]>([]);
-  const [eventos, setEventos] = useState<Evento[]>([]);
+  const [activeMenu, setActiveMenu] = useState<string>('Información Académica');
 
   const menuItems = [
     { 
-      label: 'Organización', 
-      href: '#organizacion',
+      label: 'Pregrado', 
+      href: '#pregrado',
+      id: 'pregrado',
       subItems: [
-        { label: 'Departamento de Potencia', href: '#departamento-potencia' },
-        { label: 'Departamento de Comunicaciones', href: '#departamento-comunicaciones' },
-        { label: 'Departamento de Electrónica, Computación y Control', href: '#departamento-electronica' },
+        { label: 'Departamento de Potencia', href: '#departamento-potencia', id: 'departamento-potencia' },
+        { label: 'Departamento de Comunicaciones', href: '#departamento-comunicaciones', id: 'departamento-comunicaciones' },
+        { label: 'Departamento de Electrónica, Computación y Control', href: '#departamento-electronica', id: 'departamento-electronica' },
+        { label: 'Pensum de Estudio', href: '#plan-estudios' },
       ]
     },
-    { label: 'Horarios', href: '#horarios' },
+    { label: 'Postgrado', href: '#postgrado', id:'postgrado' },
   ]
 
   const departamentos = [
@@ -58,18 +42,19 @@ const informacionAcademicaPage: React.FC = () => {
       href: "/departamentos/comunicaciones",
       descripcion: "El Departamento de Comunicaciones se encarga de la investigación y enseñanza en el campo de las comunicaciones, incluyendo redes, telecomunicaciones y sistemas de comunicación inalámbrica.",
       unidadesDocentes: [
-      { nombre: "UD Redes", href: "/materias/redes" },
-      { nombre: "UD Antenas", href: "/materias/antenas" },
-      { nombre: "UD Telecomunicaciones", href: "/materias/telecomunicaciones" }
+      { nombre: "UD Campos, Propagación y Antenas", href: "/materias/campos-propagacion-antenas" },
+      { nombre: "UD Sistemas de Comunicaciones", href: "/materias/sistemas-comunicaciones" },
+      { nombre: "UD Redes y Mediciones", href: "/materias/redes-mediciones" }
     ],
     },
     { nombre: "Departamento de Electrónica, Computación y Control", 
       href: "/departamentos/electronica",
       descripcion: "El Departamento de Electrónica, Computación y Control se enfoca en la electrónica, la informática y el control automático, abarcando áreas como sistemas embebidos, robótica y automatización.",
       unidadesDocentes: [
-        { nombre: "UD Sistemas de Electrónica", href: "/materias/sistemas-electronica" },
-        { nombre: "UD Informática", href: "/materias/informatica" },
-        { nombre: "UD Control Automático", href: "/materias/control-automatico" }
+        { nombre: "UD Análisis de Sistemas", href: "/materias/analisis-sistemas" },
+        { nombre: "UD Electrónica", href: "/materias/electronica" },
+        { nombre: "UD Control", href: "/materias/control" },
+        { nombre: "UD Sistemas Digitales", href: "/materias/sistemas-digitales" }
       ]
     },
     { nombre: "Departamento de Potencia", 
@@ -77,28 +62,15 @@ const informacionAcademicaPage: React.FC = () => {
       descripcion: "El Departamento de Potencia se encarga de la investigación y enseñanza en el campo de la potencia, incluyendo sistemas de generación, transmisión y distribución de energía." ,
       unidadesDocentes: [
         { nombre: "UD Sistemas de Potencia", href: "/materias/sistemas-potencia" },
+        { nombre: "UD Máquinas Eléctricas", href: "/materias/maquinas-electricas" },
         { nombre: "UD Electrónica de Potencia", href: "/materias/electronica-potencia" },
-        { nombre: "UD Generación", href: "/materias/generacion" }
+        { nombre: "UD Protecciones", href: "/materias/protecciones" },
+        { nombre: "UD Generación, Transmisión y Distribución", href: "/materias/generacion-transmision-distribucion" }
       ]
     },
   ];
   
   // --- LÓGICA DE DATOS ---
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [noticiasResponse, eventosResponse] = await Promise.all([
-          axios.get('http://localhost:3000/noticias/reciente'), 
-          axios.get('http://localhost:3000/eventos/reciente')  // Llama al endpoint que trae TODO
-        ]);
-        setNoticias(noticiasResponse.data);
-        setEventos(eventosResponse.data);
-      } catch (error) {
-        console.error("Error al obtener los archivos:", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   // --- LÓGICA DE SCROLL ---
   useEffect(() => {
@@ -155,51 +127,44 @@ const informacionAcademicaPage: React.FC = () => {
             </div>
 
             {/* --- Sección de Organización --- */}
-            <section id="organizacion" className="mb-24 scroll-mt-32">
+            <section id={ menuItems[0].id } className="mb-24 scroll-mt-32">
               <InfoBlock 
-                title="Organización"
+                title={ menuItems[0].label }
                 subtitle="Estructura Académica"
                 content={
                   <div className="flex flex-col space-y-4">
                     <p className="mb-2">La Escuela de Ingeniería Eléctrica se organiza en los siguientes departamentos:</p>
-                    <ul className="list-none pl-0 space-y-3">
+                    <ul className="list-none pl-0 space-y-12">
                       {departamentos.map((dep, index) => (
-                        <li key={index} className="text-black">
-                          <Link 
-                            href={dep.href} 
-                            className="font-semibold text-blue-700 hover:text-blue-900 hover:underline transition-colors"
-                          >
+                        <li key={index} className="text-[#2D3748]"> {/* Color base de la fuente general */}
+                          {/* Título del Departamento en gris oscuro neutral */}
+                          <h3 className="font-bold text-2xl text-gray-900 tracking-tight">
                             {dep.nombre}
-                          </Link>
+                          </h3>
 
-                          {/* Descripción */}
-                          <p className="text-gray-600 mt-2 text-base leading-relaxed">
+                          {/* Descripción en gris intermedio para lectura cómoda */}
+                          <p className="text-gray-600 mt-2 text-base leading-relaxed max-w-4xl">
                             {dep.descripcion}
                           </p>
 
                           {/* Unidades docentes */}
-                          <div className="mt-6 ml-2 border-l-2 border-gray-100 pl-6">
+                          <div className="mt-6 ml-2 border-l-2 border-gray-200 pl-6">
                             <span className="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-3">
                               Unidades Docentes
                             </span>
+                            
                             <ul className="flex flex-col space-y-3">
                               {dep.unidadesDocentes.map((ud, udIndex) => (
-                                <li key={udIndex}>
-                                  <Link 
-                                    href={ud.href}
-                                    className="group flex items-center text-blue-700 font-medium hover:text-blue-900 transition-all"
-                                  >
-                                    {/* Icono de flecha sutil que aparece al hacer hover */}
-                                    <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all mr-2">
-                                      →
-                                    </span>
-                                    {ud.nombre}
-                                  </Link>
+                                <li key={udIndex} className="flex items-center text-gray-700 font-medium">
+                                  {/* Viñeta de flecha en gris suave, no azul */}
+                                  <span className="text-gray-400 mr-2 font-light">
+                                    →
+                                  </span>
+                                  {ud.nombre}
                                 </li>
                               ))}
                             </ul>
                           </div>
-
                         </li>
                       ))}
                     </ul>
@@ -209,15 +174,22 @@ const informacionAcademicaPage: React.FC = () => {
             </section>
 
             {/* --- SECCIÓN 2: PLAN DE ESTUDIOS (La Tabla Dinámica) --- */}
-            <section id="plan-estudios">
-              <PlanEstudios />
+            <section id="plan-estudios" className="mb-24 scroll-mt-32">
+              <InfoBlock
+                title='Plan de Estudios'
+                content= {<PlanEstudios />}
+              />
             </section>
             
             {/* --- Sección de Horarios --- */}
-            <section id="horarios" className="mb-24 scroll-mt-32">
+            <section id= { menuItems[1].id } className="mb-24 scroll-mt-32">
               <InfoBlock
-                title="Horarios"
-                content="Aquí va la información sobre los horarios académicos."
+                title="Postgrado"
+                content= {
+                  <div className="flex flex-col space-y-4">
+                    <p className="mb-2">La Escuela de Ingeniería Eléctrica de la Universidad Central ha venido ofreciendo cursos de postgrado en diferentes áreas del conocimiento desde el principio de los años ochenta, cuando se inició el Curso de Maestría en Ingeniería Eléctrica, Mención Sistemas de Potencia; luego se abrieron otros dos programas: la Maestría en Ingeniería Eléctrica, Mención Sistemas Digitales y la Maestría en Ingeniería Eléctrica, Mención Sistemas de Comunicaciones. En 1994, después de un proceso de auto evaluación, se reestructura el conjunto de los Postgrados en Ingeniería Eléctrica para adaptarlos a las nuevas necesidades del País y darles la flexibilidad que obliga la evolución rápida de las tecnologías. De este diagnóstico surge la estructura actual de una Maestría individualizada en Ingeniería Eléctrica y varias Especializaciones.</p>
+                  </div>
+                }
               />
             </section>
           </main>

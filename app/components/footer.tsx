@@ -1,7 +1,7 @@
 // En app/components/footer.tsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faLinkedinIn, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Image from 'next/image'; // Importa el componente Image
 import Link from 'next/link';   // Importa el componente Link
 
@@ -14,14 +14,12 @@ const Footer: React.FC = () => {
 
   const mainLinks = [
     { href: "/informacion-academica", label: "Pregrado" },
-    { href: "/informacion-academica", label: "Postgrado" },
-    { href: "/contacto", label: "Contacto" },
+    { href: "/informacion-academica/#postgrado", label: "Postgrado" },
   ];
   
   const resourceLinks = [
     { href: "/noticias-y-eventos", label: "Noticias" },
-    { href: "/investigacion", label: "Investigación" },
-    { href: "/personas", label: "Personas" },
+    { href: "/laboratorios", label: "Laboratorios" },
   ];
 
   return (
@@ -89,6 +87,53 @@ const Footer: React.FC = () => {
               </div>
           </div>
 
+        </div>
+
+        {/* Créditos Discretos */}
+        <div className="flex items-center gap-2 text-xs text-gray-500">
+          <span>Desarrollado por @jose803196 </span>
+          <div className="flex gap-2">
+            <a 
+              href="https://github.com/jose803196" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+              title="GitHub del desarrollador"
+            >
+              <FontAwesomeIcon icon={faGithub} className="h-3 w-3" />
+            </a>
+            <a 
+              href="https://linkedin.com/in/tu-usuario" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+              title="LinkedIn del desarrollador"
+            >
+              <FontAwesomeIcon icon={faLinkedinIn} className="h-3 w-3" />
+            </a>
+          </div>
+          <span className="mx-1">|</span>
+          <span>Prof. @Alejandroxh14</span>
+          <div className="flex gap-2">
+            <a 
+              href="https://github.com/Alejandroxh14" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+              title="GitHub del desarrollador"
+            >
+              <FontAwesomeIcon icon={faGithub} className="h-3 w-3" />
+            </a>
+            <a 
+              href="https://linkedin.com/in/alejandroherrerar" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+              title="LinkedIn del desarrollador"
+            >
+              <FontAwesomeIcon icon={faLinkedinIn} className="h-3 w-3" />
+            </a>
+          </div>
         </div>
 
         {/* Línea divisoria */}
